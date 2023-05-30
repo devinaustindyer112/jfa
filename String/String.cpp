@@ -88,3 +88,28 @@ int String::indexOf(const char* search)
     }
     return -1;
 }
+
+String String::replace(const char* search, const char* replace)
+{
+    int index = this->indexOf(search);
+    int len = this->length();
+    int lenSearch = size(search);
+    int lenReplace = size(replace);
+
+    char* str = new char[len + lenReplace - lenSearch];
+
+    for (int i = 0; i < index; i++)
+    {
+        str[i] = this->charAt(i);
+    }
+    for (int i = 0; i < lenReplace; i++)
+    {
+        str[i + index] = replace[i];
+    }
+    for (int i = index + lenSearch; i < len; i++)
+    {
+        str[i + lenReplace - lenSearch] = this->charAt(i);
+    }
+
+    return String(str);
+}

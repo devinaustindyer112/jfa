@@ -1,4 +1,5 @@
 #include "String.h"
+#include "../Utilities/Utilities.h"
 #include "../catch_amalgamated.hpp"
 
 TEST_CASE("substring", "[substring]")
@@ -53,4 +54,12 @@ TEST_CASE() {
     REQUIRE(str.indexOf("are a") == 6);
     REQUIRE(str.indexOf("words.") == 21);
 }
+
+TEST_CASE() {
+    String str = String("These are a bunch of words.");
+    String replaced = str.replace("bunch", "lot");
+
+    REQUIRE(strCompare(replaced.toCharArray(),"These are a lot of words.") == 1);
+}
+
 

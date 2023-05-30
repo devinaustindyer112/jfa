@@ -74,7 +74,17 @@ const char* String::toCharArray()
     return str;
 }
 
-int String::indexOf(char* search)
+int String::indexOf(const char* search)
 {
+    for(int i = 0; i < this->length(); i++) {
+        int index = 0;
+        while (this->charAt(i) == search[index]) {
+            if (index == size(search) - 1) {
+                return i - index;
+            }
+            index++;
+            i++;
+        }
+    }
     return -1;
 }

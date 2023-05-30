@@ -16,7 +16,7 @@ public:
     char charAt(int index);
     const char* toCharArray();
     int length();
-    int indexOf(char* search);
+    int indexOf(const char* search);
     bool equals(String str);
 };
 

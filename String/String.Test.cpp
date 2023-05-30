@@ -45,3 +45,12 @@ TEST_CASE("operator+", "[operator+]")
 
     REQUIRE(str3.equals(String("tester")) == true);
 }
+
+TEST_CASE() {
+    String str = String("These are a bunch of words.");
+
+    REQUIRE(str.indexOf("bunch") == 12);
+    REQUIRE(str.indexOf("are a") == 6);
+    REQUIRE(str.indexOf("words.") == 21);
+}
+

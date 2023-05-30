@@ -7,12 +7,8 @@ int main()
     String string = String("Hello");
     String string2 = String("World");
 
-    String string3 = string + string2;
+    int index = string.indexOf("ell");
 
-    for(int i = 0; i < string3.length(); i++)
-    {
-        std::cout << string3.charAt(i);
-    }
-
+    std::cout << index << std::endl;
     return 0;
 }

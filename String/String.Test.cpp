@@ -47,7 +47,7 @@ TEST_CASE("operator+", "[operator+]")
     REQUIRE(str3.equals(String("tester")) == true);
 }
 
-TEST_CASE() {
+TEST_CASE("indexOf", "[indexOf]") {
     String str = String("These are a bunch of words.");
 
     REQUIRE(str.indexOf("bunch") == 12);
@@ -55,11 +55,16 @@ TEST_CASE() {
     REQUIRE(str.indexOf("words.") == 21);
 }
 
-TEST_CASE() {
+TEST_CASE("replace", "[replace]") {
     String str = String("These are a bunch of words.");
     String replaced = str.replace("bunch", "lot");
 
     REQUIRE(strCompare(replaced.toCharArray(),"These are a lot of words.") == 1);
 }
 
+TEST_CASE("replaceAll", "[replaceAll]") {
+    String str = String("These are a bunch of words.");
+    String replaced = str.replaceAll(" ", "_");
 
+    REQUIRE(strCompare(replaced.toCharArray(),"These_are_a_bunch_of_words.") == 1);
+}

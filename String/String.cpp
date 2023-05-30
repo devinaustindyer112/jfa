@@ -113,3 +113,13 @@ String String::replace(const char* search, const char* replace)
 
     return String(str);
 }
+
+String String::replaceAll(const char* search, const char* replace)
+{
+    String str = String(this->str);
+    while (str.indexOf(search) != -1)
+    {
+        str = str.replace(search, replace);
+    }
+    return str;
+}

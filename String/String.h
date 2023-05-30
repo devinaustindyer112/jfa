@@ -13,6 +13,7 @@ public:
 
     String substring(int start, int end);
     String replace(const char* search, const char* replace);
+    String replaceAll(const char* search, const char* replace);
     String operator+(String str);
     char charAt(int index);
     const char* toCharArray();

@@ -1,4 +1,4 @@
-#include "Utilities.h"
+#include "Utilities.hpp"
 #include "../catch_amalgamated.hpp"
 
 TEST_CASE("size", "[size]")

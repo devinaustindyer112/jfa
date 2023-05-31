@@ -1,5 +1,5 @@
-#include "String.h"
-#include "../Utilities/Utilities.h"
+#include "String.hpp"
+#include "../Utilities/Utilities.hpp"
 #include "../catch_amalgamated.hpp"
 
 TEST_CASE("substring", "[substring]")
@@ -64,7 +64,8 @@ TEST_CASE("replace", "[replace]") {
 
 TEST_CASE("replaceAll", "[replaceAll]") {
     String str = String("These are a bunch of words.");
-    String replaced = str.replaceAll(" ", "_");
+    String replaced = str.replaceAll(" ", "");
 
-    REQUIRE(strCompare(replaced.toCharArray(),"These_are_a_bunch_of_words.") == 1);
+    REQUIRE(strCompare(replaced.toCharArray(),"Theseareabunchofwords.") == 1);
+    REQUIRE(replaced.length() == 22);
 }

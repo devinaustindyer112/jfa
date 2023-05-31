@@ -3,12 +3,11 @@
 
 int main()
 {
+    const char* chars = "{key: 'value'}";
 
-    String string = String("Hello");
-    String string2 = String("World");
+    String str1 = String("{key: 'value'}");
+    String str2 = str1.replaceAll("'", "");
 
-    int index = string.indexOf("ell");
-
-    std::cout << index << std::endl;
+    std::cout << str2.toCharArray() << std::endl;
     return 0;
 }

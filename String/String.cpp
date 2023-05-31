@@ -1,5 +1,5 @@
-#include "../Utilities/Utilities.h"
-#include "String.h"
+#include "../Utilities/Utilities.hpp"
+#include "String.hpp"
 #include <iostream>
 
 // Utility functions

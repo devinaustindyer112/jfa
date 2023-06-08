@@ -1,8 +1,5 @@
 #include "../Utilities/Utilities.hpp"
 #include "String.hpp"
-#include <iostream>
-
-// Utility functions
 
 String::String(const char *str)
 {

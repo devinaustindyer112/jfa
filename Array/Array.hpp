@@ -9,6 +9,9 @@ private:
     public:
         Array();
         ~Array();
+        int length();
+        void push(T element);
+        T pop();
         T operator[](int index);
 
 };

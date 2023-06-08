@@ -8,6 +8,7 @@ private:
 
 public:
     String(const char *str);
+    String(char character);
     String();
     ~String();
 

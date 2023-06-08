@@ -1,4 +1,5 @@
 #include "Array.hpp"
+#include "../String/String.hpp"
 
 template <typename T> Array<T>::Array() {
     this->elements = new T[0];
@@ -48,4 +49,5 @@ template <typename T> T Array<T>::operator[](int index) {
 }
 
 template class Array<int>; 
+template class Array<String>; 
 

@@ -6,6 +6,18 @@ String::String(const char *str)
     this->str = str;
 }
 
+String::String(char character)
+{
+    char *str = new char[1];
+    str[0] = character;
+    this->str = str;
+}
+
+String::String()
+{
+    this->str = "";
+}
+
 String::~String()
 {
     // No need to free memory, as it is a const char.

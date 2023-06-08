@@ -69,3 +69,9 @@ TEST_CASE("replaceAll", "[replaceAll]") {
     REQUIRE(strCompare(replaced.toCharArray(),"Theseareabunchofwords.") == 1);
     REQUIRE(replaced.length() == 22);
 }
+
+
+TEST_CASE("init with char", "[init with char]") {
+    String str = String('H');
+    REQUIRE(str.length() == 1);
+}

@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef STRING_HPP
+#define STRING_HPP
 
 class String
 {
@@ -23,6 +23,4 @@ public:
     bool equals(String str);
 };
 
-String concat(String str1, String str2);
-
-#endif // STRING_H
+#endif // STRING_HPP

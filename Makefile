@@ -9,11 +9,11 @@ test-utils: catch_amalgamated.cpp Utilities/Utilities.cpp Utilities/Utilities.Te
 	g++ -std=c++14 -o test-utils catch_amalgamated.cpp Utilities/Utilities.cpp Utilities/Utilities.Test.cpp
 	./test-utils
 
-test-array: catch_amalgamated.cpp Array/Array.cpp Array/Array.Test.cpp
-	g++ -std=c++14 -o test-array catch_amalgamated.cpp Array/Array.cpp Array/Array.Test.cpp
+test-array: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Array/Array.Test.cpp
+	g++ -std=c++14 -o test-array catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Array/Array.Test.cpp
 	./test-array
 
 clean: 
-	rm -f test
+	rm -f test-*
 
  

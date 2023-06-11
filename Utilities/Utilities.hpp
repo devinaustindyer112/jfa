@@ -1,7 +1,7 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILITIES_HPP
+#define UTILITIES_HPP
 
 int size(const char *str);
 int strCompare(const char *str1, const char *str2);
 
-#endif // UTILITIES_H
+#endif // UTILITIES_HPP

@@ -1,5 +1,5 @@
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
 
 template <typename T> class Array {
 private:
@@ -16,4 +16,4 @@ private:
 
 };
 
-#endif // ARRAY_H
+#endif // ARRAY_HPP

@@ -24,7 +24,7 @@ String::~String()
 }
 
 String String::substring(int start, int end)
-{      
+{
     int length = end - start;
 
     char sub[length];
@@ -43,10 +43,10 @@ int String::length()
 
 String String::operator+(String string)
 {
-    int len1 = size(this->str); 
+    int len1 = size(this->str);
     int len2 = string.length();
 
-    char* str = new char[len1 + len2];
+    char *str = new char[len1 + len2];
 
     for (int i = 0; i < len1; i++)
     {
@@ -62,8 +62,8 @@ String String::operator+(String string)
 
 String String::operator+(char character)
 {
-    int len1 = size(this->str); 
-    char* str = new char[len1 + 1];
+    int len1 = size(this->str);
+    char *str = new char[len1 + 1];
     str[len1 + 1] = character;
     return String(str);
 }
@@ -85,18 +85,21 @@ bool String::equals(String str)
     return true;
 }
 
-const char* String::toCharArray()
+const char *String::toCharArray()
 {
     const char *str = this->str;
     return str;
 }
 
-int String::indexOf(const char* search)
+int String::indexOf(const char *search)
 {
-    for(int i = 0; i < this->length(); i++) {
+    for (int i = 0; i < this->length(); i++)
+    {
         int index = 0;
-        while (this->str[i] == search[index]) {
-            if (index == size(search) - 1) {
+        while (this->str[i] == search[index])
+        {
+            if (index == size(search) - 1)
+            {
                 return i - index;
             }
             index++;
@@ -106,14 +109,14 @@ int String::indexOf(const char* search)
     return -1;
 }
 
-String String::replace(const char* search, const char* replace)
+String String::replace(const char *search, const char *replace)
 {
     int index = this->indexOf(search);
     int len = this->length();
     int lenSearch = size(search);
     int lenReplace = size(replace);
 
-    char* str = new char[len + lenReplace - lenSearch];
+    char *str = new char[len + lenReplace - lenSearch];
 
     for (int i = 0; i < index; i++)
     {
@@ -131,7 +134,7 @@ String String::replace(const char* search, const char* replace)
     return String(str);
 }
 
-String String::replaceAll(const char* search, const char* replace)
+String String::replaceAll(const char *search, const char *replace)
 {
     String str = String(this->str);
     while (str.indexOf(search) != -1)

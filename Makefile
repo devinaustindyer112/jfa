@@ -13,6 +13,10 @@ test-array: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Arra
 	g++ -std=c++14 -o test-array catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Array/Array.Test.cpp
 	./test-array
 
+test-tokenizer: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
+	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
+	./test-tokenizer
+
 clean: 
 	rm -f test-*
 

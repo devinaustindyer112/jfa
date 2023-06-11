@@ -1,7 +1,9 @@
 #include "../String/String.hpp"
 
-struct JSONToken {
-    enum class Type {
+struct JSONToken
+{
+    enum class Type
+    {
         LBRACE,
         RBRACE,
         LBRACKET,
@@ -19,6 +21,7 @@ class Tokenizer
 private:
     String str;
     int index;
+
 public:
     Tokenizer(String str);
     ~Tokenizer();

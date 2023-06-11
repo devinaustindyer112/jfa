@@ -42,12 +42,13 @@ TEST_CASE("operator+", "[operator+]")
     String str1 = String("test");
     String str2 = String("er");
 
-    String str3 =  str1 + str2;
+    String str3 = str1 + str2;
 
     REQUIRE(str3.equals(String("tester")) == true);
 }
 
-TEST_CASE("indexOf", "[indexOf]") {
+TEST_CASE("indexOf", "[indexOf]")
+{
     String str = String("These are a bunch of words.");
 
     REQUIRE(str.indexOf("bunch") == 12);
@@ -55,23 +56,25 @@ TEST_CASE("indexOf", "[indexOf]") {
     REQUIRE(str.indexOf("words.") == 21);
 }
 
-TEST_CASE("replace", "[replace]") {
+TEST_CASE("replace", "[replace]")
+{
     String str = String("These are a bunch of words.");
     String replaced = str.replace("bunch", "lot");
 
-    REQUIRE(strCompare(replaced.toCharArray(),"These are a lot of words.") == 1);
+    REQUIRE(strCompare(replaced.toCharArray(), "These are a lot of words.") == 1);
 }
 
-TEST_CASE("replaceAll", "[replaceAll]") {
+TEST_CASE("replaceAll", "[replaceAll]")
+{
     String str = String("These are a bunch of words.");
     String replaced = str.replaceAll(" ", "");
 
-    REQUIRE(strCompare(replaced.toCharArray(),"Theseareabunchofwords.") == 1);
+    REQUIRE(strCompare(replaced.toCharArray(), "Theseareabunchofwords.") == 1);
     REQUIRE(replaced.length() == 22);
 }
 
-
-TEST_CASE("init with char", "[init with char]") {
+TEST_CASE("init with char", "[init with char]")
+{
     String str = String('H');
     REQUIRE(str.length() == 1);
 }

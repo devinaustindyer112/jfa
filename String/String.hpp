@@ -13,14 +13,14 @@ public:
     ~String();
 
     String substring(int start, int end);
-    String replace(const char* search, const char* replace);
-    String replaceAll(const char* search, const char* replace);
+    String replace(const char *search, const char *replace);
+    String replaceAll(const char *search, const char *replace);
     String operator+(String str);
     String operator+(char character);
     char operator[](int index);
-    const char* toCharArray();
+    const char *toCharArray();
     int length();
-    int indexOf(const char* search);
+    int indexOf(const char *search);
     bool equals(String str);
 };
 

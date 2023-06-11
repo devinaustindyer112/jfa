@@ -1,3 +1,5 @@
+#ifndef TOKENIZER_HPP
+#define TOKENIZER_HPP
 #include "../String/String.hpp"
 
 struct JSONToken
@@ -27,3 +29,5 @@ public:
     JSONToken next();
     bool hasNext();
 };
+
+#endif // TOKENIZER_HPP

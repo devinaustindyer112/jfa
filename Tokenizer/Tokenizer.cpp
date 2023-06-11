@@ -3,7 +3,7 @@
 
 Tokenizer::Tokenizer(String str)
 {
-    this->str = str;
+    this->str = str.replaceAll(" ", "");
     this->index = 0;
 }
 
@@ -13,6 +13,7 @@ JSONToken Tokenizer::next()
     {
         throw "No more tokens";
     }
+
     JSONToken token;
     char c = this->str[this->index];
     if (c == '{')
@@ -53,11 +54,11 @@ JSONToken Tokenizer::next()
     }
     else if (c == '"')
     {
-        this->index++;
         String str = "";
+        this->index++;
         while (this->index < this->str.length())
         {
-            char c = this->str[this->index];
+            c = this->str[this->index];
             if (c == '"')
             {
                 this->index++;
@@ -73,4 +74,9 @@ JSONToken Tokenizer::next()
         token.value = str;
     }
     return token;
+}
+
+bool Tokenizer::hasNext()
+{
+    return this->index < this->str.length();
 }

@@ -24,7 +24,6 @@ private:
 
 public:
     Tokenizer(String str);
-    ~Tokenizer();
     JSONToken next();
     bool hasNext();
 };

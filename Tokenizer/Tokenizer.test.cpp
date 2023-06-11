@@ -1,9 +1,13 @@
 #include "Tokenizer.hpp"
 #include "../catch_amalgamated.hpp"
+#include <iostream>
 
 TEST_CASE("next", "[next]")
 {
-    Tokenizer tokenizer = Tokenizer("{1, 2, 3, 4}");
+    Tokenizer tokenizer = Tokenizer("\"Yo\"");
 
-    REQUIRE(tokenizer.next().type == JSONToken::Type::LBRACE);
+    JSONToken token = tokenizer.next();
+    REQUIRE(token.type == JSONToken::Type::STRING);
+    REQUIRE(token.value == "Yo");
+    REQUIRE(token.value.equals("Yo"));
 }

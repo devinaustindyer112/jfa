@@ -47,6 +47,14 @@ TEST_CASE("operator+", "[operator+]")
     REQUIRE(str3.equals(String("tester")) == true);
 }
 
+TEST_CASE("operator+ with char", "[operator+ with char]")
+{
+    String str1 = String("test");
+    String str2 = str1 + 's';
+
+    REQUIRE(str2.equals(String("tests")) == true);
+}
+
 TEST_CASE("indexOf", "[indexOf]")
 {
     String str = String("These are a bunch of words.");

@@ -18,6 +18,7 @@ public:
     String operator+(String str);
     String operator+(char character);
     char operator[](int index);
+    char operator==(const char *str);
     const char *toCharArray();
     int length();
     int indexOf(const char *search);

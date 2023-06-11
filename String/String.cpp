@@ -64,13 +64,31 @@ String String::operator+(char character)
 {
     int len1 = size(this->str);
     char *str = new char[len1 + 1];
-    str[len1 + 1] = character;
+
+    for (int i = 0; i < len1; i++)
+    {
+        str[i] = this->str[i];
+    }
+
+    str[len1] = character;
     return String(str);
 }
 
 char String::operator[](int index)
 {
     return this->str[index];
+}
+
+char String::operator==(const char *str)
+{
+    for (int i = 0; i < this->length(); i++)
+    {
+        if (this->str[i] != str[i])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool String::equals(String str)

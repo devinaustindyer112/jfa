@@ -1,5 +1,19 @@
 #include "../String/String.hpp"
 
+struct JSONToken {
+    enum class Type {
+        LBRACE,
+        RBRACE,
+        LBRACKET,
+        RBRACKET,
+        COMMA,
+        COLON,
+        STRING,
+    };
+    JSONToken::Type type;
+    String value;
+};
+
 class Tokenizer
 {
 private:
@@ -8,7 +22,6 @@ private:
 public:
     Tokenizer(String str);
     ~Tokenizer();
-    String nextToken();
-    bool hasMoreTokens();
+    JSONToken next();
+    bool hasNext();
 };
-

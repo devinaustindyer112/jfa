@@ -16,7 +16,8 @@ public:
     String replace(const char* search, const char* replace);
     String replaceAll(const char* search, const char* replace);
     String operator+(String str);
-    char charAt(int index);
+    String operator+(char character);
+    char operator[](int index);
     const char* toCharArray();
     int length();
     int indexOf(const char* search);

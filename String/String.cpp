@@ -36,11 +36,6 @@ String String::substring(int start, int end)
     return String(sub);
 }
 
-char String::charAt(int index)
-{
-    return this->str[index];
-}
-
 int String::length()
 {
     return size(this->str);
@@ -59,17 +54,30 @@ String String::operator+(String string)
     }
     for (int i = 0; i < len2; i++)
     {
-        str[i + len1] = string.charAt(i);
+        str[i + len1] = string[i];
     }
 
     return String(str);
+}
+
+String String::operator+(char character)
+{
+    int len1 = size(this->str); 
+    char* str = new char[len1 + 1];
+    str[len1 + 1] = character;
+    return String(str);
+}
+
+char String::operator[](int index)
+{
+    return this->str[index];
 }
 
 bool String::equals(String str)
 {
     for (int i = 0; i < str.length(); i++)
     {
-        if (this->charAt(i) != str.charAt(i))
+        if (this->str[i] != str[i])
         {
             return false;
         }
@@ -87,7 +95,7 @@ int String::indexOf(const char* search)
 {
     for(int i = 0; i < this->length(); i++) {
         int index = 0;
-        while (this->charAt(i) == search[index]) {
+        while (this->str[i] == search[index]) {
             if (index == size(search) - 1) {
                 return i - index;
             }
@@ -109,7 +117,7 @@ String String::replace(const char* search, const char* replace)
 
     for (int i = 0; i < index; i++)
     {
-        str[i] = this->charAt(i);
+        str[i] = this->str[i];
     }
     for (int i = 0; i < lenReplace; i++)
     {
@@ -117,7 +125,7 @@ String String::replace(const char* search, const char* replace)
     }
     for (int i = index + lenSearch; i < len; i++)
     {
-        str[i + lenReplace - lenSearch] = this->charAt(i);
+        str[i + lenReplace - lenSearch] = this->str[i];
     }
 
     return String(str);

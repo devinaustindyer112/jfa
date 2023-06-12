@@ -9,3 +9,15 @@ JFA::JFA(String json)
     {
     }
 }
+
+// DOCUMENT
+
+// LBRACE (need better names for these)
+
+// RBRACE
+
+// KEY
+
+// VALUE
+
+// COLON

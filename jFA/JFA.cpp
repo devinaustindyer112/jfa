@@ -7,6 +7,5 @@ JFA::JFA(String json)
     Tokenizer tokenizer(json);
     while (tokenizer.hasNext())
     {
-        JSONToken token = tokenizer.next();
     }
 }

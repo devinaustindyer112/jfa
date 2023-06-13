@@ -25,6 +25,7 @@ private:
     int index;
 
 public:
+    Tokenizer();
     Tokenizer(String str);
     JSONToken next();
     bool hasNext();

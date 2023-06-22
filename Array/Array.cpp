@@ -1,17 +1,21 @@
 #include "Array.hpp"
 #include "../String/String.hpp"
+#include "../Parser/Parser.hpp"
+#include <iostream>
 
 template <typename T>
 Array<T>::Array()
 {
     this->elements = new T[0];
     this->size = 0;
+    std::cout << "Array created" << std::endl;
 }
 
 template <typename T>
 Array<T>::~Array()
 {
     delete[] this->elements;
+    std::cout << "Array deleted" << std::endl;
 }
 
 template <typename T>
@@ -64,3 +68,7 @@ T Array<T>::operator[](int index)
 
 template class Array<int>;
 template class Array<String>;
+template class Array<JSONValue>;
+template class Array<JSONObject>;
+template class Array<JSONObject *>;
+template class Array<JSONValue *>;

@@ -1,38 +1,13 @@
-#include "Tokenizer/Tokenizer.hpp"
+#include "Parser/Parser.hpp"
 #include "catch_amalgamated.hpp"
 #include <iostream>
 
 int main()
 {
-    Tokenizer tokenizer = Tokenizer("{\"Value\": \"Hello World\"}");
-
-    while (tokenizer.hasNext())
-    {
-        JSONToken token = tokenizer.next();
-
-        switch (token.type)
-        {
-        case JSONToken::Type::STRING:
-            std::cout << "STRING" << std::endl;
-            break;
-        case JSONToken::Type::LBRACE:
-            std::cout << "LBRACE" << std::endl;
-            break;
-        case JSONToken::Type::RBRACE:
-            std::cout << "RBRACE" << std::endl;
-            break;
-        case JSONToken::Type::COLON:
-            std::cout << "COLON" << std::endl;
-            break;
-        case JSONToken::Type::COMMA:
-            std::cout << "COMMA" << std::endl;
-            break;
-        default:
-            break;
-        }
-
-        std::cout << token.value.toCharArray() << std::endl;
-    }
+    Parser parser = Parser("{\"key\": \"value\"}");
+    parser.parse();
+    String str = parser.print();
+    return 0;
 }
 
 // #include "String/String.hpp"

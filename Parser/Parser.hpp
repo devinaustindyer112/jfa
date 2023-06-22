@@ -3,36 +3,58 @@
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
+#include <iostream>
 
-struct JSONNode
+struct JSONObject;
+
+struct JSONValue
 {
     enum class Type
     {
         OBJECT,
         ARRAY,
         STRING,
-        NUMBER,
-        BOOLEAN,
-        NULL,
     };
-    JSONNode::Type type;
+
+    Type type;
+    String string;
+    JSONObject *object;
+
+    ~JSONValue()
+    {
+        std::cout << "JSONValue deleted" << std::endl;
+    }
+};
+
+struct JSONObject
+{
     String key;
-    Array<JSONNode> children;
+    JSONValue *value;
+
+    ~JSONObject()
+    {
+        std::cout << "JSONObject deleted" << std::endl;
+    }
 };
 
 class Parser
 {
 private:
     Tokenizer tokenizer;
-    JSONNode *root;
+    JSONObject *root;
+    Array<JSONObject *> *objects;
+    Array<JSONValue *> *values;
 
-    Array<JSONNode> parseObject();
-    Array<JSONNode> parseArray();
+    JSONObject *parseObject();
+    Array<JSONValue> parseArray();
+
     void eat(JSONToken::Type type);
 
 public:
     Parser(String str);
-    JSONNode parse();
+    ~Parser();
+    void parse();
+    String print();
 };
 
 #endif // PARSE_HPP

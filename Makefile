@@ -1,5 +1,5 @@
-main: Utilities/Utilities.cpp Tokenizer/Tokenizer.cpp String/String.cpp Array/Array.cpp Main.cpp
-	g++ -std=c++14 -o main Utilities/Utilities.cpp Tokenizer/Tokenizer.cpp String/String.cpp Main.cpp Array/Array.cpp
+main: Parser/Parser.cpp Parser/Parser.hpp  Utilities/Utilities.cpp Tokenizer/Tokenizer.cpp String/String.cpp Array/Array.cpp Main.cpp
+	g++ -std=c++14 -o main Array/Array.cpp Parser/Parser.cpp Utilities/Utilities.cpp Tokenizer/Tokenizer.cpp String/String.cpp Main.cpp
 
 test-string: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp String/String.Test.cpp
 	g++ -std=c++14 -o test-string catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp String/String.Test.cpp

@@ -1,6 +1,12 @@
 #include "Tokenizer.hpp"
 #include "../String/String.hpp"
 
+Tokenizer::Tokenizer()
+{
+    this->str = "";
+    this->index = 0;
+}
+
 Tokenizer::Tokenizer(String str)
 {
     this->str = str.replaceAll(" ", "");

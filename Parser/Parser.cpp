@@ -6,53 +6,32 @@
 
 Parser::Parser(String str)
 {
-    this->root = new JSONObject();
+    this->root = JSONObject();
     this->tokenizer = Tokenizer(str);
-    this->objects = new Array<JSONObject *>();
-    this->values = new Array<JSONValue *>();
 }
 
 Parser::~Parser()
 {
-    delete this->root;
-    for (int i = 0; i < this->objects->length(); i++)
-    {
-        delete (*this->objects)[i];
-    }
-
-    for (int i = 0; i < this->values->length(); i++)
-    {
-        delete (*this->values)[i];
-    }
+    // traverse and call delete on all new'd objects
 }
 
 void Parser::parse()
 {
-    this->root->key = "root";
-    JSONValue *value = new JSONValue();
+    this->root.key = "root";
     JSONToken token = this->tokenizer.next();
     if (token.type == JSONToken::Type::LBRACE)
     {
-        value->type = JSONValue::Type::OBJECT;
-        value->object = this->parseObject();
+        this->root.value = JSONValue(JSONValue::Type::OBJECT, this->parseObject());
     }
-    // else if (token.type == JSONToken::Type::LBRACKET)
-    // {
-    //     value->type = JSONValue::Type::ARRAY;
-    //     value->elements = this->parseArray();
-    // }
     else
     {
         throw "Invalid JSON";
     }
-    this->values->push(value);
-    this->root->value = value;
 };
 
 JSONObject *Parser::parseObject()
 {
     JSONObject *object = new JSONObject();
-    JSONValue *value = new JSONValue();
     JSONToken token = this->tokenizer.next();
     if (token.type == JSONToken::Type::STRING)
     {
@@ -66,27 +45,17 @@ JSONObject *Parser::parseObject()
     token = this->tokenizer.next();
     if (token.type == JSONToken::Type::STRING)
     {
-        value->type = JSONValue::Type::STRING;
-        value->string = token.value;
+        object->value = JSONValue(JSONValue::Type::STRING, token.value);
     }
     else if (token.type == JSONToken::Type::LBRACE)
     {
-        value->type = JSONValue::Type::OBJECT;
-        value->object = this->parseObject();
+        object->value = JSONValue(JSONValue::Type::OBJECT, this->parseObject());
     }
-    // else if (token.type == JSONToken::Type::LBRACKET)
-    // {
-    //     value->type = JSONValue::Type::ARRAY;
-    //     value->elements = this->parseArray();
-    // }
     else
     {
         throw "Invalid JSON";
     }
 
-    object->value = value;
-    this->objects->push(object);
-    this->values->push(value);
     return object;
 }
 
@@ -106,8 +75,8 @@ void Parser::eat(JSONToken::Type type)
 
 String Parser::print()
 {
-    String key = this->root->value->object->key;
-    String value = this->root->value->object->value->string;
+    String key = this->root.value.object->key;
+    String value = this->root.value.object->value.string;
     std::cout << key.toCharArray() << std::endl;
     std::cout << value.toCharArray() << std::endl;
 

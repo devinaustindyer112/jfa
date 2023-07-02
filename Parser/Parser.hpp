@@ -20,20 +20,40 @@ struct JSONValue
     String string;
     JSONObject *object;
 
-    ~JSONValue()
+    JSONValue()
     {
-        std::cout << "JSONValue deleted" << std::endl;
+        this->type = Type::STRING;
+        this->string = "";
+    }
+
+    JSONValue(Type type, String string)
+    {
+        this->type = type;
+        this->string = string;
+    }
+
+    JSONValue(Type type, JSONObject *object)
+    {
+        this->type = type;
+        this->object = object;
     }
 };
 
 struct JSONObject
 {
     String key;
-    JSONValue *value;
+    JSONValue value;
 
-    ~JSONObject()
+    JSONObject()
     {
-        std::cout << "JSONObject deleted" << std::endl;
+        this->key = "";
+        this->value = JSONValue();
+    }
+
+    JSONObject(String key, JSONValue value)
+    {
+        this->key = key;
+        this->value = value;
     }
 };
 
@@ -41,7 +61,7 @@ class Parser
 {
 private:
     Tokenizer tokenizer;
-    JSONObject *root;
+    JSONObject root;
     Array<JSONObject *> *objects;
     Array<JSONValue *> *values;
 

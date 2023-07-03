@@ -70,5 +70,3 @@ template class Array<int>;
 template class Array<String>;
 template class Array<JSONValue>;
 template class Array<JSONObject>;
-template class Array<JSONObject *>;
-template class Array<JSONValue *>;

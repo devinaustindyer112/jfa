@@ -3,59 +3,9 @@
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
+#include "../JSON/JSONValue.hpp"
+#include "../JSON/JSONObject.hpp"
 #include <iostream>
-
-struct JSONObject;
-
-struct JSONValue
-{
-    enum class Type
-    {
-        OBJECT,
-        ARRAY,
-        STRING,
-    };
-
-    Type type;
-    String string;
-    JSONObject *object;
-
-    JSONValue()
-    {
-        this->type = Type::STRING;
-        this->string = "";
-    }
-
-    JSONValue(Type type, String string)
-    {
-        this->type = type;
-        this->string = string;
-    }
-
-    JSONValue(Type type, JSONObject *object)
-    {
-        this->type = type;
-        this->object = object;
-    }
-};
-
-struct JSONObject
-{
-    String key;
-    JSONValue value;
-
-    JSONObject()
-    {
-        this->key = "";
-        this->value = JSONValue();
-    }
-
-    JSONObject(String key, JSONValue value)
-    {
-        this->key = key;
-        this->value = value;
-    }
-};
 
 class Parser
 {
@@ -74,7 +24,7 @@ public:
     Parser(String str);
     ~Parser();
     void parse();
-    String print();
+    void print();
 };
 
 #endif // PARSE_HPP

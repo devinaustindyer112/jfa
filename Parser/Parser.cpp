@@ -41,8 +41,10 @@ JSONObject *Parser::parseObject()
     {
         throw "Invalid JSON";
     }
+
     this->eat(JSONToken::Type::COLON);
     token = this->tokenizer.next();
+
     if (token.type == JSONToken::Type::STRING)
     {
         object->value = JSONValue(JSONValue::Type::STRING, token.value);
@@ -73,12 +75,7 @@ void Parser::eat(JSONToken::Type type)
     }
 }
 
-String Parser::print()
+void Parser::print()
 {
-    String key = this->root.value.object->key;
-    String value = this->root.value.object->value.string;
-    std::cout << key.toCharArray() << std::endl;
-    std::cout << value.toCharArray() << std::endl;
-
-    return "";
+    this->root.print();
 }

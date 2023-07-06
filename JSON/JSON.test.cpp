@@ -5,8 +5,5 @@
 
 TEST_CASE("object", "[object]")
 {
-    JSONValue val1 = JSONValue("baz");
-    JSONObject obj1 = JSONObject("ban", val1);
-
-    obj1.print();
+    JSONObject obj2 = JSONObject("foo", JSONValue(new JSONObject("ban", JSONValue("baz"))));
 }

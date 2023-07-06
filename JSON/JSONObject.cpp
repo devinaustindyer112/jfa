@@ -57,6 +57,7 @@ JSONObject::JSONObject(JSONObject &&object)
 
 JSONObject::~JSONObject()
 {
+    std::cout << "deleting value " << this->key.toCharArray() << std::endl;
     delete this->value;
 }
 

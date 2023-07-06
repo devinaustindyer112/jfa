@@ -17,7 +17,7 @@ JSONValue::JSONValue(String string)
 JSONValue::JSONValue(JSONObject *object)
 {
     this->type = Type::OBJECT;
-    this->object = object;
+    this->object = new JSONObject(object);
 }
 
 JSONValue::JSONValue(JSONValue &&value)
@@ -38,6 +38,7 @@ JSONValue::~JSONValue()
 {
     if (this->type == Type::OBJECT)
     {
+        std::cout << "deleting object " << this->object->key.toCharArray() << std::endl;
         delete this->object;
     }
 }

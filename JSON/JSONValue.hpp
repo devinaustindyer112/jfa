@@ -19,8 +19,9 @@ public:
     JSONObject *object;
 
     JSONValue();
-    JSONValue(Type type, String string);
-    JSONValue(Type type, JSONObject *object);
+    JSONValue(String string);
+    JSONValue(JSONObject *object);
+    JSONValue(JSONValue &&value);
     ~JSONValue();
     void print();
 };

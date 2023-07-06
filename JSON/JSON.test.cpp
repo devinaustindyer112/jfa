@@ -5,7 +5,8 @@
 
 TEST_CASE("object", "[object]")
 {
-    JSONObject obj = JSONObject("ban", JSONValue(JSONValue::Type::OBJECT, new JSONObject("ban", JSONValue(JSONValue::Type::STRING, "baz"))));
+    JSONValue val1 = JSONValue("baz");
+    JSONObject obj1 = JSONObject("ban", val1);
 
-    obj.print();
+    obj1.print();
 }

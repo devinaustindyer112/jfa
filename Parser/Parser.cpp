@@ -21,7 +21,7 @@ void Parser::parse()
     JSONToken token = this->tokenizer.next();
     if (token.type == JSONToken::Type::LBRACE)
     {
-        this->root.value = JSONValue(JSONValue::Type::OBJECT, this->parseObject());
+        this->root.value = JSONValue(this->parseObject());
     }
     else
     {
@@ -47,11 +47,11 @@ JSONObject *Parser::parseObject()
 
     if (token.type == JSONToken::Type::STRING)
     {
-        object->value = JSONValue(JSONValue::Type::STRING, token.value);
+        object->value = JSONValue(token.value);
     }
     else if (token.type == JSONToken::Type::LBRACE)
     {
-        object->value = JSONValue(JSONValue::Type::OBJECT, this->parseObject());
+        object->value = JSONValue(this->parseObject());
     }
     else
     {

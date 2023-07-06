@@ -7,10 +7,13 @@ class JSONObject
 {
 public:
     String key;
-    JSONValue value;
+    JSONValue *value;
 
     JSONObject();
-    JSONObject(String key, JSONValue value);
+    JSONObject(String key, JSONValue *value);
+    JSONObject(String key, JSONValue &&value);
+    JSONObject(JSONObject *object);
+    JSONObject(JSONObject &&object);
     ~JSONObject();
     void print();
 };

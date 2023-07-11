@@ -11,7 +11,6 @@ public:
     String(char character);
     String();
     ~String();
-
     String substring(int start, int end);
     String replace(const char *search, const char *replace);
     String replaceAll(const char *search, const char *replace);

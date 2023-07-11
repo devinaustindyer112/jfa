@@ -21,9 +21,12 @@ public:
     JSONValue();
     JSONValue(String string);
     JSONValue(JSONObject *object);
-    JSONValue(JSONValue &&value);
+    JSONValue(JSONObject &&object);
+    JSONValue(const JSONValue &other);
     ~JSONValue();
+    JSONValue &operator=(const JSONValue &other);
     void print();
+    void print(int indent);
 };
 
 #endif // JSONVALUE_HPP

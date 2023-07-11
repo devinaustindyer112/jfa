@@ -73,6 +73,8 @@
         "complex": "cpp",
         "deque": "cpp",
         "__memory": "cpp",
-        "charconv": "cpp"
+        "charconv": "cpp",
+        "regex": "cpp",
+        "format": "cpp"
     }
 }

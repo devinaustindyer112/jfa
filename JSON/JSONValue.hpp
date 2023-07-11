@@ -1,6 +1,7 @@
 #ifndef JSONVALUE_HPP
 #define JSONVALUE_HPP
 #include "../String/String.hpp"
+#include "../Array/Array.hpp"
 
 class JSONObject;
 
@@ -17,12 +18,14 @@ public:
     Type type;
     String string;
     JSONObject *object;
-
+    Array<JSONValue> *array;
     JSONValue();
     JSONValue(String string);
+    JSONValue(const JSONValue &other);
     JSONValue(JSONObject *object);
     JSONValue(JSONObject &&object);
-    JSONValue(const JSONValue &other);
+    JSONValue(Array<JSONValue> *other);
+    JSONValue(Array<JSONValue> &&other);
     ~JSONValue();
     JSONValue &operator=(const JSONValue &other);
     void print();

@@ -43,3 +43,16 @@ TEST_CASE("Index", "[Index]")
 
     REQUIRE(arr[2] == 3);
 }
+
+TEST_CASE("Constructors", "[Constructor]")
+{
+    Array<int> arr = Array<int>();
+
+    arr.push(1);
+    arr.push(2);
+    arr.push(3);
+
+    Array<int> arr2 = Array<int>(&arr);
+
+    REQUIRE(arr2[2] == 3);
+}

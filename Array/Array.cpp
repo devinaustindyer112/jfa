@@ -8,14 +8,33 @@ Array<T>::Array()
 {
     this->elements = new T[0];
     this->size = 0;
-    std::cout << "Array created" << std::endl;
+}
+
+template <typename T>
+Array<T>::Array(Array<T> *other)
+{
+    this->elements = new T[other->size];
+    this->size = other->size;
+
+    for (int i = 0; i < this->size; i++)
+    {
+        this->elements[i] = other->elements[i];
+    }
+}
+
+template <typename T>
+Array<T>::Array(Array<T> &&other)
+{
+    this->elements = other.elements;
+    this->size = other.size;
+
+    delete[] other.elements;
 }
 
 template <typename T>
 Array<T>::~Array()
 {
     delete[] this->elements;
-    std::cout << "Array deleted" << std::endl;
 }
 
 template <typename T>

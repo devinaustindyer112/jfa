@@ -75,6 +75,12 @@
         "__memory": "cpp",
         "charconv": "cpp",
         "regex": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "queue": "cpp",
+        "set": "cpp",
+        "span": "cpp",
+        "stack": "cpp"
     }
 }

@@ -10,6 +10,8 @@ private:
 
 public:
     Array();
+    Array(Array *other);
+    Array(Array &&other);
     ~Array();
     int length();
     void push(T element);

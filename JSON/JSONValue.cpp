@@ -40,6 +40,16 @@ JSONValue::JSONValue(JSONObject &&object)
     this->object = new JSONObject(object);
 }
 
+JSONValue::JSONValue(Array<JSONValue> *other)
+{
+    // To be implemented
+}
+
+JSONValue::JSONValue(Array<JSONValue> &&other)
+{
+    // To be implemented
+}
+
 JSONValue::~JSONValue()
 {
     if (this->type == Type::OBJECT)

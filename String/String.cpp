@@ -1,5 +1,6 @@
 #include "../Utilities/Utilities.hpp"
 #include "String.hpp"
+#include <iostream>
 
 String::String(const char *str)
 {
@@ -160,4 +161,12 @@ String String::replaceAll(const char *search, const char *replace)
         str = str.replace(search, replace);
     }
     return str;
+}
+
+void String::print()
+{
+    for (int i = 0; i < this->length(); i++)
+    {
+        std::cout << this->str[i];
+    }
 }

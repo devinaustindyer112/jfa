@@ -12,11 +12,13 @@ public:
     Array();
     Array(Array *other);
     Array(Array &&other);
+    Array(const Array<T> &other);
     ~Array();
     int length();
     void push(T element);
     T pop();
     T operator[](int index);
+    void print();
 };
 
 #endif // ARRAY_HPP

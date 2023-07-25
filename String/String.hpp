@@ -22,6 +22,7 @@ public:
     int length();
     int indexOf(const char *search);
     bool equals(String str);
+    void print();
 };
 
 #endif // STRING_HPP

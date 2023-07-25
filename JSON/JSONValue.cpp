@@ -14,12 +14,6 @@ JSONValue::JSONValue(String string)
     this->string = string;
 }
 
-JSONValue::JSONValue(JSONObject *object)
-{
-    this->type = Type::OBJECT;
-    this->object = new JSONObject(object);
-}
-
 JSONValue::JSONValue(const JSONValue &other)
 {
     if (other.type == Type::STRING)
@@ -32,6 +26,17 @@ JSONValue::JSONValue(const JSONValue &other)
         this->type = Type::OBJECT;
         this->object = new JSONObject(other.object->key, other.object);
     }
+    else
+    {
+        this->type = Type::ARRAY;
+        this->array = new Array<JSONValue>(other.array);
+    }
+}
+
+JSONValue::JSONValue(JSONObject *object)
+{
+    this->type = Type::OBJECT;
+    this->object = new JSONObject(object);
 }
 
 JSONValue::JSONValue(JSONObject &&object)
@@ -40,14 +45,16 @@ JSONValue::JSONValue(JSONObject &&object)
     this->object = new JSONObject(object);
 }
 
-JSONValue::JSONValue(Array<JSONValue> *other)
+JSONValue::JSONValue(Array<JSONValue> *value)
 {
-    // To be implemented
+    this->type = Type::ARRAY;
+    this->array = new Array<JSONValue>(value);
 }
 
-JSONValue::JSONValue(Array<JSONValue> &&other)
+JSONValue::JSONValue(Array<JSONValue> &&value)
 {
-    // To be implemented
+    this->type = Type::ARRAY;
+    this->array = new Array<JSONValue>(value);
 }
 
 JSONValue::~JSONValue()
@@ -74,6 +81,11 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
         this->type = Type::OBJECT;
         this->object = new JSONObject(other.object->key, other.object);
     }
+    else
+    {
+        this->type = Type::ARRAY;
+        this->array = new Array<JSONValue>(other.array);
+    }
     return *this;
 }
 
@@ -86,6 +98,10 @@ void JSONValue::print()
     else if (this->type == JSONValue::Type::OBJECT)
     {
         this->object->print();
+    }
+    else if (this->type == JSONValue::Type::ARRAY)
+    {
+        // this->array->print();
     }
 }
 

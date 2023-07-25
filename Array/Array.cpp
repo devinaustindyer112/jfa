@@ -25,10 +25,25 @@ Array<T>::Array(Array<T> *other)
 template <typename T>
 Array<T>::Array(Array<T> &&other)
 {
-    this->elements = other.elements;
+    this->elements = new T[other.size];
     this->size = other.size;
 
-    delete[] other.elements;
+    for (int i = 0; i < this->size; i++)
+    {
+        this->elements[i] = other.elements[i];
+    }
+}
+
+template <typename T>
+Array<T>::Array(const Array<T> &other)
+{
+    this->elements = new T[other.size];
+    this->size = other.size;
+
+    for (int i = 0; i < this->size; i++)
+    {
+        this->elements[i] = other.elements[i];
+    }
 }
 
 template <typename T>
@@ -85,7 +100,21 @@ T Array<T>::operator[](int index)
     return this->elements[index];
 }
 
-template class Array<int>;
+template <typename T>
+void Array<T>::print()
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        this->elements[i].print();
+        if (i < this->size - 1)
+        {
+            std::cout << ", " << std::endl;
+        }
+    }
+}
+
+// template class Array<int>;
+
 template class Array<String>;
 template class Array<JSONValue>;
 template class Array<JSONObject>;

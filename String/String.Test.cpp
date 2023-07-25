@@ -86,3 +86,9 @@ TEST_CASE("init with char", "[init with char]")
     String str = String('H');
     REQUIRE(str.length() == 1);
 }
+
+TEST_CASE("print", "[print]")
+{
+    String str = String("This should print for the world to see.");
+    str.print();
+}

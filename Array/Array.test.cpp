@@ -1,58 +1,46 @@
 #include "Array.hpp"
+#include "../String/String.hpp"
 #include "../catch_amalgamated.hpp"
 
-template class Array<int>;
+template class Array<String>;
 
 TEST_CASE("Array", "[Array]")
 {
-    Array<int> arr = Array<int>();
+    Array<String> arr = Array<String>();
 
     REQUIRE(arr.length() == 0);
 }
 
 TEST_CASE("Push", "[Push]")
 {
-    Array<int> arr = Array<int>();
+    Array<String> arr = Array<String>();
 
-    arr.push(1);
-    arr.push(2);
-    arr.push(3);
+    arr.push("1");
+    arr.push("2");
+    arr.push("3");
 
     REQUIRE(arr.length() == 3);
 }
 
 TEST_CASE("Pop", "[Pop]")
 {
-    Array<int> arr = Array<int>();
+    Array<String> arr = Array<String>();
 
-    arr.push(1);
-    arr.push(2);
-    arr.push(3);
+    arr.push("1");
+    arr.push("2");
+    arr.push("3");
     arr.pop();
 
     REQUIRE(arr.length() == 2);
 }
 
-TEST_CASE("Index", "[Index]")
+TEST_CASE("Print", "[Print]")
 {
-    Array<int> arr = Array<int>();
+    Array<String> arr = Array<String>();
 
-    arr.push(1);
-    arr.push(2);
-    arr.push(3);
+    arr.push("1");
+    arr.push("2");
+    arr.push("3");
 
-    REQUIRE(arr[2] == 3);
-}
-
-TEST_CASE("Constructors", "[Constructor]")
-{
-    Array<int> arr = Array<int>();
-
-    arr.push(1);
-    arr.push(2);
-    arr.push(3);
-
-    Array<int> arr2 = Array<int>(&arr);
-
-    REQUIRE(arr2[2] == 3);
+    arr.print();
 }

@@ -13,6 +13,11 @@ JSONObject::JSONObject(JSONObject &object)
         this->key = object.key;
         this->value = new JSONValue(object.value->object);
     }
+    else if (object.value->type == JSONValue::Type::ARRAY)
+    {
+        this->key = object.key;
+        this->value = new JSONValue(object.value->array);
+    }
     else
     {
         this->key = object.key;

@@ -17,8 +17,8 @@ test-tokenizer: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp 
 	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
 	./test-tokenizer
 
-test-json: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
-	g++ -std=c++14 -o test-json catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
+test-json: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
+	g++ -std=c++14 -o test-json catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
 	./test-json
 
 

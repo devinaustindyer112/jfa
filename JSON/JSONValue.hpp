@@ -21,15 +21,11 @@ public:
     Array<JSONValue> *array;
     JSONValue();
     JSONValue(String value);
-    JSONValue(const JSONValue &value);
+    JSONValue(JSONValue *value);
     JSONValue(JSONObject *value);
-    JSONValue(JSONObject &&value);
     JSONValue(Array<JSONValue> *value);
-    JSONValue(Array<JSONValue> &&value);
     ~JSONValue();
-    JSONValue &operator=(const JSONValue &value);
     void print();
-    void print(int indent);
 };
 
 #endif // JSONVALUE_HPP

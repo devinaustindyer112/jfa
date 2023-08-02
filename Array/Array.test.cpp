@@ -1,5 +1,6 @@
 #include "Array.hpp"
 #include "../String/String.hpp"
+#include "../JSON/JSONValue.hpp"
 #include "../catch_amalgamated.hpp"
 
 template class Array<String>;
@@ -42,5 +43,13 @@ TEST_CASE("Print", "[Print]")
     arr.push("2");
     arr.push("3");
 
+    arr.print();
+}
+
+TEST_CASE("Print JSONValue", "[Print JSONValue]")
+{
+    Array<JSONValue> arr = Array<JSONValue>();
+
+    arr.push(JSONValue("1"));
     arr.print();
 }

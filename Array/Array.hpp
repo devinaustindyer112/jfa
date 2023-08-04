@@ -17,7 +17,7 @@ public:
     int length();
     void push(T element);
     T pop();
-    T operator[](int index);
+    T get(int index);
     void print();
 };
 

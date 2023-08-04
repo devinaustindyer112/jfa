@@ -11,6 +11,7 @@ public:
     JSONObject();
     JSONObject(String key, JSONValue *value);
     JSONObject(JSONObject *object);
+    JSONValue *get(String key);
     ~JSONObject();
     void print();
 };

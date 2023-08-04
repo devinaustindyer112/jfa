@@ -23,9 +23,23 @@ JSONObject::~JSONObject()
     delete this->value;
 }
 
+// Get a value based off of a key
+JSONValue *JSONObject::get(String key)
+{
+    if (this->key.equals(key))
+    {
+        return this->value;
+    }
+    else
+    {
+        return this->value->get(key);
+    }
+}
+
 void JSONObject::print()
 {
     this->key.print();
     std::cout << ": ";
     value->print();
+    std::cout << std::endl;
 }

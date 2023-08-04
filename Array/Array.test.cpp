@@ -46,6 +46,18 @@ TEST_CASE("Print", "[Print]")
     arr.print();
 }
 
+TEST_CASE("Get", "[Get]")
+{
+    Array<String> *arr = new Array<String>();
+
+    arr->push("1");
+    arr->push("2");
+    arr->push("3");
+
+    String str = arr->get(0);
+    REQUIRE(str == "1");
+}
+
 TEST_CASE("Print JSONValue", "[Print JSONValue]")
 {
     Array<JSONValue> arr = Array<JSONValue>();

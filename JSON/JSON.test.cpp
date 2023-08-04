@@ -6,9 +6,18 @@
 
 TEST_CASE("object", "[object]")
 {
-    JSONValue *val = new JSONValue("bar");
-    JSONObject *obj = new JSONObject("foo", val);
-    obj->print();
+    Array<JSONValue> *arr = new Array<JSONValue>();
+    JSONValue *val1 = new JSONValue("foo");
+    arr->push(val1);
+    arr->push(val1);
+    arr->push(val1);
+    JSONValue *val2 = new JSONValue(arr);
+    JSONObject *obj1 = new JSONObject("bar", val2);
+    JSONValue *val3 = new JSONValue(obj1);
+    JSONObject *obj2 = new JSONObject("baz", val3);
+
+    JSONValue val = obj2->get("baz");
+    val.print();
 
     /* Need to take a step back. Had to delete a bunch of work that I did
             because 99% of it was done without designing or thoughtful consideration.

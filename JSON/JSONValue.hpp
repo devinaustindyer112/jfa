@@ -24,6 +24,7 @@ public:
     JSONValue(JSONValue *value);
     JSONValue(JSONObject *value);
     JSONValue(Array<JSONValue> *value);
+    JSONValue *get(String key);
     ~JSONValue();
     void print();
 };

@@ -95,7 +95,7 @@ T Array<T>::pop()
 }
 
 template <typename T>
-T Array<T>::operator[](int index)
+T Array<T>::get(int index)
 {
     return this->elements[index];
 }
@@ -103,17 +103,15 @@ T Array<T>::operator[](int index)
 template <typename T>
 void Array<T>::print()
 {
+    std::cout << "[";
     for (int i = 0; i < this->size; i++)
     {
         this->elements[i].print();
         if (i < this->size - 1)
-        {
-            std::cout << ", " << std::endl;
-        }
+            std::cout << ", ";
     }
+    std::cout << "]";
 }
-
-// template class Array<int>;
 
 template class Array<String>;
 template class Array<JSONValue>;

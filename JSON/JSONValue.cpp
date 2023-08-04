@@ -21,15 +21,15 @@ JSONValue::JSONValue(JSONValue *value)
         this->type = Type::OBJECT;
         this->object = new JSONObject(value->object);
     }
+    else if (value->type == Type::STRING)
+    {
+        this->type = Type::STRING;
+        this->string = value->string;
+    }
     else if (value->type == Type::ARRAY)
     {
         this->type = Type::ARRAY;
         this->array = new Array<JSONValue>(value->array);
-    }
-    else
-    {
-        this->type = Type::STRING;
-        this->string = value->string;
     }
 }
 
@@ -53,19 +53,37 @@ JSONValue::~JSONValue()
     }
 }
 
+JSONValue *JSONValue::get(String key)
+{
+    if (this->type == JSONValue::Type::OBJECT)
+    {
+        return this->object->get(key);
+    }
+    else if (this->type == JSONValue::Type::ARRAY)
+    {
+        for (int i = 0; i < this->array->length(); i++)
+        {
+            if (this->array->get(i).type == JSONValue::Type::OBJECT)
+            {
+                return this->array->get(i).object->get(key);
+            }
+        }
+    }
+    return nullptr;
+}
+
 void JSONValue::print()
 {
     if (this->type == JSONValue::Type::OBJECT)
     {
         this->object->print();
     }
-    else if (this->type == JSONValue::Type::ARRAY)
-    {
-        this->array->print();
-    }
     else if (this->type == JSONValue::Type::STRING)
     {
         this->string.print();
     }
-    std::cout << std::endl;
+    else if (this->type == JSONValue::Type::ARRAY)
+    {
+        this->array->print();
+    }
 }

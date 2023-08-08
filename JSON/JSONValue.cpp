@@ -87,3 +87,37 @@ void JSONValue::print()
         this->array->print();
     }
 }
+
+bool JSONValue::equals(JSONValue *value)
+{
+    if (this->type == JSONValue::Type::STRING && value->type == JSONValue::Type::STRING)
+    {
+        return this->string.equals(value->string);
+    }
+    if (this->type == JSONValue::Type::ARRAY && value->type == JSONValue::Type::ARRAY)
+    {
+        return this->array->equals(value->array);
+    }
+    if (this->type == JSONValue::Type::OBJECT && value->type == JSONValue::Type::OBJECT)
+    {
+        return this->object->equals(value->object);
+    }
+    return false;
+}
+
+bool JSONValue::equals(JSONValue value)
+{
+    if (this->type == JSONValue::Type::STRING && value.type == JSONValue::Type::STRING)
+    {
+        return this->string.equals(value.string);
+    }
+    if (this->type == JSONValue::Type::ARRAY && value.type == JSONValue::Type::ARRAY)
+    {
+        return this->array->equals(value.array);
+    }
+    if (this->type == JSONValue::Type::OBJECT && value.type == JSONValue::Type::OBJECT)
+    {
+        return this->object->equals(value.object);
+    }
+    return false;
+}

@@ -13,6 +13,8 @@ public:
     JSONObject(JSONObject *object);
     JSONValue *get(String key);
     ~JSONObject();
+    bool equals(JSONObject *object);
+    bool equals(JSONObject object);
     void print();
 };
 

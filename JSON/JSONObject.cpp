@@ -36,6 +36,16 @@ JSONValue *JSONObject::get(String key)
     }
 }
 
+bool JSONObject::equals(JSONObject *object)
+{
+    return this->key.equals(object->key) && this->value->equals(object->value);
+}
+
+bool JSONObject::equals(JSONObject object)
+{
+    return this->key.equals(object.key) && this->value->equals(object.value);
+}
+
 void JSONObject::print()
 {
     this->key.print();

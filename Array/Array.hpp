@@ -16,8 +16,10 @@ public:
     ~Array();
     int length();
     void push(T element);
+    void push(T *element);
     T pop();
     T get(int index);
+    bool equals(Array<T> *other);
     void print();
 };
 

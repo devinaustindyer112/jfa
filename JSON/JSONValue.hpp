@@ -27,6 +27,8 @@ public:
     JSONValue *get(String key);
     ~JSONValue();
     void print();
+    bool equals(JSONValue *value);
+    bool equals(JSONValue value);
 };
 
 #endif // JSONVALUE_HPP

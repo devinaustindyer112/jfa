@@ -18,8 +18,6 @@ TEST_CASE("Object", "[Object]")
 
     JSONValue val = obj2->get("baz");
     val.print();
-
-    // Need to make sure I'm handling the memory correctly and consistently.
 }
 
 TEST_CASE("Nested value equals", "[Nested value equals]")
@@ -69,12 +67,11 @@ TEST_CASE("Nested value not equal to different value", "[Nested value not equal 
     JSONObject *obj2 = new JSONObject("baz", val3);
 
     Array<JSONValue> *arr2 = new Array<JSONValue>();
-    JSONValue *val4 = new JSONValue("fuz");
-    arr2->push(val4);
-    arr2->push(val4);
-    arr2->push(val4);
+    arr2->push(JSONValue("foo"));
+    arr2->push(JSONValue("foo"));
+    arr2->push(JSONValue("foo"));
     JSONValue val5 = new JSONValue(arr2);
 
     JSONValue val = obj2->get("bar");
-    REQUIRE(!val.equals(val4));
+    REQUIRE(val.equals(val5));
 }

@@ -4,6 +4,11 @@
 #include "../catch_amalgamated.hpp"
 #include <iostream>
 
+// ===================
+// Write more tests! Need to make sure that everything is
+// complete before continuing with parser.
+// ===================
+
 TEST_CASE("Object", "[Object]")
 {
     Array<JSONValue> *arr = new Array<JSONValue>();

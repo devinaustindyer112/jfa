@@ -23,7 +23,6 @@ JSONObject::~JSONObject()
     delete this->value;
 }
 
-// Get a value based off of a key
 JSONValue *JSONObject::get(String key)
 {
     if (this->key.equals(key))

@@ -6,6 +6,13 @@ JSONObject::JSONObject()
     this->key = "";
 }
 
+// Deep copy
+JSONObject::JSONObject(const JSONObject &other)
+{
+    this->key = other.key;
+    this->value = new JSONValue(other.value);
+}
+
 JSONObject::JSONObject(String key, JSONValue *value)
 {
     this->key = key;
@@ -20,6 +27,7 @@ JSONObject::JSONObject(JSONObject *object)
 
 JSONObject::~JSONObject()
 {
+    std::cout << "Deleting JSONObject" << std::endl;
     delete this->value;
 }
 

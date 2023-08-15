@@ -8,6 +8,22 @@ JSONValue::JSONValue()
     this->string = "";
 }
 
+// Deep copy
+JSONValue::JSONValue(const JSONValue &other)
+{
+    this->type = other.type;
+    this->string = other.string; // Assuming String has a proper copy constructor
+
+    if (other.type == Type::OBJECT)
+    {
+        this->object = new JSONObject(*other.object); // Deep copy JSONObject
+    }
+    else if (other.type == Type::ARRAY)
+    {
+        this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
+    }
+}
+
 JSONValue::JSONValue(String string)
 {
     this->type = Type::STRING;
@@ -61,13 +77,10 @@ JSONValue *JSONValue::get(String key)
     }
     else if (this->type == JSONValue::Type::ARRAY)
     {
-        for (int i = 0; i < this->array->length(); i++)
-        {
-            if (this->array->get(i).type == JSONValue::Type::OBJECT)
-            {
-                return this->array->get(i).object->get(key);
-            }
-        }
+        //=========
+        // This needs to be fixed
+        //=========
+        return this->array->get(0).get(key);
     }
     return nullptr;
 }
@@ -84,6 +97,7 @@ void JSONValue::print()
     }
     else if (this->type == JSONValue::Type::ARRAY)
     {
+        std::cout << "printing array";
         this->array->print();
     }
 }

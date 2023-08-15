@@ -9,6 +9,7 @@ public:
     String key;
     JSONValue *value;
     JSONObject();
+    JSONObject(const JSONObject &other);
     JSONObject(String key, JSONValue *value);
     JSONObject(JSONObject *object);
     JSONValue *get(String key);

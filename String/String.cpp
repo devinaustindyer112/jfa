@@ -2,26 +2,34 @@
 #include "String.hpp"
 #include <iostream>
 
-String::String(const char *str)
-{
-    this->str = str;
-}
-
-String::String(char character)
-{
-    char *str = new char[1];
-    str[0] = character;
-    this->str = str;
-}
-
 String::String()
 {
-    this->str = "";
+    this->str = nullptr;
 }
+
+String::String(const char *str)
+{
+    char *newStr = new char[size(str)];
+    for (int i = 0; i < size(str); i++)
+    {
+        newStr[i] = str[i];
+    }
+    this->str = newStr;
+}
+
+// String::String(const String &other)
+// {
+//     char *newStr = new char[other.length()];
+//     for (int i = 0; i < other.length(); i++)
+//     {
+//         newStr[i] = other[i];
+//     }
+//     this->str = newStr;
+// }
 
 String::~String()
 {
-    // No need to free memory, as it is a const char.
+    delete this->str;
 }
 
 String String::substring(int start, int end)
@@ -38,6 +46,11 @@ String String::substring(int start, int end)
 }
 
 int String::length()
+{
+    return size(this->str);
+}
+
+int String::length() const
 {
     return size(this->str);
 }
@@ -74,6 +87,11 @@ String String::operator+(char character)
     str[len1] = character;
     return String(str);
 }
+
+// char String::operator[](int index) const
+// {
+//     return this->str[index];
+// }
 
 char String::operator[](int index)
 {

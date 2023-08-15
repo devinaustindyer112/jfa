@@ -15,11 +15,14 @@ public:
         STRING,
     };
 
+    // Make thise private?
+
     Type type;
     String string;
     JSONObject *object;
     Array<JSONValue> *array;
     JSONValue();
+    JSONValue(const JSONValue &other);
     JSONValue(String value);
     JSONValue(JSONValue *value);
     JSONValue(JSONObject *value);

@@ -7,9 +7,14 @@ private:
     const char *str;
 
 public:
-    String(const char *str);
-    String(char character);
+    //==================
+    // Update this to not use const char *str.
+    // Need better understanding of c-strings and such.
+    // https://stackoverflow.com/questions/6823249/what-is-a-char
+    //==================
     String();
+    String(const char *str);
+    // String(const char &str);
     ~String();
     String substring(int start, int end);
     String replace(const char *search, const char *replace);
@@ -20,6 +25,7 @@ public:
     char operator==(const char *str);
     const char *toCharArray();
     int length();
+    int length() const;
     int indexOf(const char *search);
     bool equals(String str);
     void print();

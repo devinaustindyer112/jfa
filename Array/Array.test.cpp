@@ -114,3 +114,12 @@ TEST_CASE("Push pointer", "[Push pointer]")
 
     REQUIRE(arr1->equals(arr2));
 }
+
+TEST_CASE("Copy constructor")
+{
+    Array<JSONValue> *arr1 = new Array<JSONValue>();
+    arr1->push(JSONValue("1"));
+    arr1->push(JSONValue("2"));
+    Array<JSONValue> *arr2 = new Array<JSONValue>(arr1);
+    REQUIRE(arr1->equals(arr2));
+}

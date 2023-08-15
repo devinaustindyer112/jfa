@@ -14,7 +14,7 @@ public:
     //==================
     String();
     String(const char *str);
-    // String(const char &str);
+    String(const String &str);
     ~String();
     String substring(int start, int end);
     String replace(const char *search, const char *replace);
@@ -22,6 +22,7 @@ public:
     String operator+(String str);
     String operator+(char character);
     char operator[](int index);
+    char operator[](int index) const;
     char operator==(const char *str);
     const char *toCharArray();
     int length();

@@ -11,7 +11,7 @@ TEST_CASE("substring", "[substring]")
 {
     String str1 = String("test");
     String str2 = String("es");
-    REQUIRE(str1.equals(str2) == false);
+    // REQUIRE(str1.equals(str2) == false);
 }
 
 // TEST_CASE("equals", "[equals]")

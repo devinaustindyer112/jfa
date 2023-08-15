@@ -17,15 +17,15 @@ String::String(const char *str)
     this->str = newStr;
 }
 
-// String::String(const String &other)
-// {
-//     char *newStr = new char[other.length()];
-//     for (int i = 0; i < other.length(); i++)
-//     {
-//         newStr[i] = other[i];
-//     }
-//     this->str = newStr;
-// }
+String::String(const String &other)
+{
+    char *newStr = new char[other.length()];
+    for (int i = 0; i < other.length(); i++)
+    {
+        newStr[i] = other[i];
+    }
+    this->str = newStr;
+}
 
 String::~String()
 {
@@ -88,10 +88,10 @@ String String::operator+(char character)
     return String(str);
 }
 
-// char String::operator[](int index) const
-// {
-//     return this->str[index];
-// }
+char String::operator[](int index) const
+{
+    return this->str[index];
+}
 
 char String::operator[](int index)
 {

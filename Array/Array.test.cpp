@@ -17,9 +17,9 @@ template class Array<String>;
 // assignment operator (currently commented out).
 
 // The problem is that the default assignment operator is creating
-// two objects with references to the same thing being deleted/freed multiple times.
+// two objects with references to the same thing being deleted/freed multiple times (JSONValue *value).
 // Defining a proper assignment operator makes sure that the assignment operator
-// creates entirely new references.
+// creates entirely new reference (JSONValue *value).
 
 // Works because we never delete the obj1 or obj2.
 

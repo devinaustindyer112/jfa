@@ -88,6 +88,18 @@ String String::operator+(char character)
     return String(str);
 }
 
+String &String::operator=(const String &other)
+{
+    char *newStr = new char[other.length()];
+    for (int i = 0; i < other.length(); i++)
+    {
+        newStr[i] = other[i];
+    }
+    delete[] this->str;
+    this->str = newStr;
+    return *this;
+}
+
 char String::operator[](int index) const
 {
     return this->str[index];

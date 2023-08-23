@@ -85,6 +85,7 @@ void Array<T>::push(T *element)
         newElements[i] = this->elements[i];
     }
 
+    // This copies the value not the pointer
     newElements[this->size] = *element;
 
     delete[] this->elements;

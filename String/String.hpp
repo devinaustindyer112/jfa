@@ -21,6 +21,7 @@ public:
     String replaceAll(const char *search, const char *replace);
     String operator+(String str);
     String operator+(char character);
+    String &operator=(const String &other);
     char operator[](int index);
     char operator[](int index) const;
     char operator==(const char *str);

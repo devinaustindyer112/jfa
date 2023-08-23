@@ -27,9 +27,20 @@ JSONObject::JSONObject(JSONObject *object)
 
 JSONObject::~JSONObject()
 {
-    std::cout << "Deleting JSONObject" << std::endl;
     delete this->value;
 }
+
+// JSONObject &JSONObject::operator=(const JSONObject &other)
+// {
+//     std::cout << "assignment operator called";
+//     if (this != &other)
+//     {
+//         this->key = other.key;
+//         delete this->value;
+//         this->value = new JSONValue(*other.value);
+//     }
+//     return *this;
+// }
 
 JSONValue *JSONObject::get(String key)
 {

@@ -39,22 +39,22 @@ TEST_CASE("Test1")
 
 // It doesn't work because we do delete the obj1 or obj2.
 
-// TEST_CASE("Test2")
-// {
-//     Array<JSONObject> *arr1 = new Array<JSONObject>();
-//     Array<JSONObject> *arr2 = new Array<JSONObject>();
+TEST_CASE("Test2")
+{
+    Array<JSONObject> *arr1 = new Array<JSONObject>();
+    Array<JSONObject> *arr2 = new Array<JSONObject>();
 
-//     JSONObject *obj1 = new JSONObject("foo", new JSONValue("bar"));
-//     JSONObject *obj2 = new JSONObject("bin", new JSONValue("baz"));
+    JSONObject *obj1 = new JSONObject("foo", new JSONValue("bar"));
+    JSONObject *obj2 = new JSONObject("bin", new JSONValue("baz"));
 
-//     arr1->push(obj1);
-//     arr1->push(obj2);
+    arr1->push(obj1);
+    arr1->push(obj2);
 
-//     delete obj1;
-//     delete obj2;
+    delete obj1;
+    delete obj2;
 
-//     // REQUIRE(!arr1->equals(arr2));
-// }
+    // REQUIRE(!arr1->equals(arr2));
+}
 
 // This doesn't work because obj1 and obj2 go out of scope, causing a
 // delete (we explicitly delete above. here implicitly)

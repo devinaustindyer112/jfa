@@ -15,8 +15,6 @@ public:
         STRING,
     };
 
-    // Make thise private?
-
     Type type;
     String string;
     JSONObject *object;

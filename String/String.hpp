@@ -4,14 +4,9 @@
 class String
 {
 private:
-    const char *str;
+    char *str;
 
 public:
-    //==================
-    // Update this to not use const char *str.
-    // Need better understanding of c-strings and such.
-    // https://stackoverflow.com/questions/6823249/what-is-a-char
-    //==================
     String();
     String(const char *str);
     String(const String &str);

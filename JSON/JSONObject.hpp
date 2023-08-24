@@ -12,7 +12,7 @@ public:
     JSONObject(const JSONObject &other);
     JSONObject(String key, JSONValue *value);
     JSONObject(JSONObject *object);
-    // JSONObject &operator=(const JSONObject &other);
+    JSONObject &operator=(const JSONObject &other);
     JSONValue *get(String key);
     ~JSONObject();
     bool equals(JSONObject *object);

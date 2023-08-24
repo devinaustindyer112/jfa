@@ -7,68 +7,54 @@
 
 template class Array<String>;
 
-//=============================
-// Keep updating the JSONValue and JSONObject classes
-// So that all array tests pass.
-// Need to work on memory management.
-// ============================
-
-// The tests below will all work, but only when we explicitly define an
-// assignment operator (currently commented out).
-
-// The problem is that the default assignment operator is creating
-// two objects with references to the same thing being deleted/freed multiple times (JSONValue *value).
-// Defining a proper assignment operator makes sure that the assignment operator
-// creates entirely new reference (JSONValue *value).
-
-// Works because we never delete the obj1 or obj2.
-
-TEST_CASE("Test1")
-{
-    Array<JSONObject> *arr1 = new Array<JSONObject>();
-    Array<JSONObject> *arr2 = new Array<JSONObject>();
-
-    JSONObject *obj1 = new JSONObject("foo", new JSONValue("bar"));
-    JSONObject *obj2 = new JSONObject("bin", new JSONValue("baz"));
-
-    arr1->push(obj1);
-    arr1->push(obj2);
-
-    // REQUIRE(!arr1->equals(arr2));
-}
-
-// It doesn't work because we do delete the obj1 or obj2.
-
-TEST_CASE("Test2")
-{
-    Array<JSONObject> *arr1 = new Array<JSONObject>();
-    Array<JSONObject> *arr2 = new Array<JSONObject>();
-
-    JSONObject *obj1 = new JSONObject("foo", new JSONValue("bar"));
-    JSONObject *obj2 = new JSONObject("bin", new JSONValue("baz"));
-
-    arr1->push(obj1);
-    arr1->push(obj2);
-
-    delete obj1;
-    delete obj2;
-
-    // REQUIRE(!arr1->equals(arr2));
-}
-
-// This doesn't work because obj1 and obj2 go out of scope, causing a
-// delete (we explicitly delete above. here implicitly)
-
-// TEST_CASE("Test3")
+// TEST_CASE("constructer with pointer to other array", "[Array]")
 // {
-//     Array<JSONObject> *arr1 = new Array<JSONObject>();
-//     Array<JSONObject> *arr2 = new Array<JSONObject>();
-
-//     JSONObject obj1 = JSONObject("foo", new JSONValue("bar"));
-//     JSONObject obj2 = JSONObject("bin", new JSONValue("baz"));
-
-//     arr1->push(obj1);
-//     arr1->push(obj2);
-
-//     // REQUIRE(!arr1->equals(arr2));
+//     Array<String> *array = new Array<String>();
+//     array->push(new String("Hello"));
+//     array->push(new String("World"));
+//     Array<String> *other = new Array<String>(array);
+//     REQUIRE(other->length() == 2);
+//     REQUIRE(other->get(1).equals(String("World")));
+//     REQUIRE(other->get(0).equals(String("Hello")));
+//     delete array;
+//     delete other;
 // }
+
+// TEST_CASE("same test but with JSONObects that have JSONValues", "[Array]")
+// {
+//     Array<JSONObject> *array = new Array<JSONObject>();
+//     array->push(new JSONObject(String("Hello"), new JSONValue(String("World"))));
+//     array->push(new JSONObject(String("World"), new JSONValue(String("Hello"))));
+//     Array<JSONObject> *other = new Array<JSONObject>(array);
+//     REQUIRE(other->length() == 2);
+//     REQUIRE(other->get(1).equals(JSONObject(String("World"), new JSONValue(String("Hello")))));
+//     REQUIRE(other->get(0).equals(JSONObject(String("Hello"), new JSONValue(String("World")))));
+//     delete array;
+//     delete other;
+// }
+
+// TEST_CASE("same test but with JSONValues that have strings", "[Array]")
+// {
+//     Array<JSONValue> *array = new Array<JSONValue>();
+//     array->push(new JSONValue(String("Hello")));
+//     array->push(new JSONValue(String("World")));
+//     Array<JSONValue> *other = new Array<JSONValue>(array);
+//     REQUIRE(other->length() == 2);
+//     REQUIRE(other->get(1).equals(JSONValue(String("World"))));
+//     REQUIRE(other->get(0).equals(JSONValue(String("Hello"))));
+//     delete array;
+//     delete other;
+// }
+
+TEST_CASE("same test but with JSONValues that have JSONObjects", "[Array]")
+{
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World")))));
+    // array->push(new JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello")))));
+    // Array<JSONValue> *other = new Array<JSONValue>(array);
+    // REQUIRE(other->length() == 2);
+    // REQUIRE(other->get(1).equals(JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello"))))));
+    // REQUIRE(other->get(0).equals(JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World"))))));
+    // delete array;
+    // delete other;
+}

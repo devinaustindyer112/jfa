@@ -63,6 +63,7 @@ JSONValue::JSONValue(Array<JSONValue> *array)
 
 JSONValue::~JSONValue()
 {
+    std::cout << "Deleting value \n";
     if (this->type == Type::OBJECT)
     {
         delete this->object;
@@ -74,7 +75,9 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
     if (this != &other)
     {
         this->type = other.type;
+        std::cout << "Here is our problem \n";
         this->string = other.string; // Assuming String has a proper copy constructor
+        std::cout << "Bet we didn't make it \n";
 
         // Delete the existing memory (if applicable)
         if (this->type == Type::OBJECT)
@@ -96,6 +99,7 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
             this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
         }
     }
+    std::cout << "Copy assignment operator done";
     return *this;
 }
 

@@ -9,6 +9,7 @@ JSONObject::JSONObject()
 // Copy constructor (Deep copy)
 JSONObject::JSONObject(const JSONObject &other)
 {
+    std::cout << "Copy JONObject" << std::endl;
     this->key = other.key;
     this->value = new JSONValue(*other.value);
 }
@@ -16,6 +17,7 @@ JSONObject::JSONObject(const JSONObject &other)
 // Deep copy assignment operator
 JSONObject &JSONObject::operator=(const JSONObject &other)
 {
+    std::cout << "Assign JONObject" << std::endl;
     if (this != &other)
     {
         this->key = other.key;
@@ -28,6 +30,7 @@ JSONObject &JSONObject::operator=(const JSONObject &other)
 // Destructor
 JSONObject::~JSONObject()
 {
+    std::cout << "Delete JONObject" << std::endl;
     delete this->value;
 }
 

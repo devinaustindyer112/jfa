@@ -20,6 +20,8 @@ String::String(const char *str)
 // Copy constructor (Deep copy)
 String::String(const String &other)
 {
+    std::cout << "Copy String" << std::endl;
+
     if (other.str != nullptr)
     {
         this->str = new char[other.length()];
@@ -37,6 +39,7 @@ String::String(const String &other)
 // Deep copy assignment operator
 String &String::operator=(const String &other)
 {
+    std::cout << "Assign String" << std::endl;
     if (this == &other)
     {
         return *this; // Self-assignment, nothing to do
@@ -64,6 +67,7 @@ String &String::operator=(const String &other)
 // Destructor
 String::~String()
 {
+    std::cout << "Delete String" << std::endl;
     delete[] this->str;
 }
 

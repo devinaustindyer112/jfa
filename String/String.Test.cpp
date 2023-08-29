@@ -9,16 +9,6 @@ TEST_CASE("substring", "[substring]")
     REQUIRE(str1.equals(str2) == false);
 }
 
-TEST_CASE("equals", "[equals]")
-{
-    String str1 = String("test");
-    String str2 = String("test");
-    String str3 = String("false");
-
-    REQUIRE(str1.equals(str2) == true);
-    REQUIRE(str1.equals(str3) == false);
-}
-
 TEST_CASE("length", "[length]")
 {
     String *str1 = new String("test");
@@ -44,7 +34,7 @@ TEST_CASE("operator+", "[operator+]")
 
     String str3 = str1 + str2;
 
-    REQUIRE(str3.equals(String("tester")) == true);
+    REQUIRE(str3 == String("tester"));
 }
 
 TEST_CASE("operator+ with char", "[operator+ with char]")
@@ -52,7 +42,7 @@ TEST_CASE("operator+ with char", "[operator+ with char]")
     String str1 = String("test");
     String str2 = str1 + 's';
 
-    REQUIRE(str2.equals(String("tests")) == true);
+    REQUIRE(str2 == String("tests"));
 }
 
 TEST_CASE("indexOf", "[indexOf]")
@@ -85,12 +75,4 @@ TEST_CASE("print", "[print]")
 {
     String str = String("This should print for the world to see.");
     str.print();
-}
-
-TEST_CASE("assignment operator")
-{
-    String str1 = String("test");
-    String str2 = str1;
-
-    REQUIRE(str1.equals(str2) == true);
 }

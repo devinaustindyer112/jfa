@@ -20,6 +20,7 @@ public:
     char operator[](int index);
     char operator[](int index) const;
     char operator==(const char *str);
+    char operator==(String str);
     const char *toCharArray();
     int length();
     int length() const;

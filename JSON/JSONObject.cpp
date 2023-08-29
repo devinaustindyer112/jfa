@@ -6,11 +6,29 @@ JSONObject::JSONObject()
     this->key = "";
 }
 
-// Deep copy
+// Copy constructor (Deep copy)
 JSONObject::JSONObject(const JSONObject &other)
 {
     this->key = other.key;
-    this->value = new JSONValue(other.value);
+    this->value = new JSONValue(*other.value);
+}
+
+// Deep copy assignment operator
+JSONObject &JSONObject::operator=(const JSONObject &other)
+{
+    if (this != &other)
+    {
+        this->key = other.key;
+        delete this->value;
+        this->value = new JSONValue(*other.value);
+    }
+    return *this;
+}
+
+// Destructor
+JSONObject::~JSONObject()
+{
+    delete this->value;
 }
 
 JSONObject::JSONObject(String key, JSONValue *value)
@@ -23,23 +41,6 @@ JSONObject::JSONObject(JSONObject *object)
 {
     this->key = object->key;
     this->value = new JSONValue(object->value);
-}
-
-JSONObject::~JSONObject()
-{
-    std::cout << "Deleting object \n";
-    delete this->value;
-}
-
-JSONObject &JSONObject::operator=(const JSONObject &other)
-{
-    if (this != &other)
-    {
-        this->key = other.key;
-        delete this->value;
-        this->value = new JSONValue(*other.value);
-    }
-    return *this;
 }
 
 JSONValue *JSONObject::get(String key)

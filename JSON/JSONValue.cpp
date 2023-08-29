@@ -8,7 +8,7 @@ JSONValue::JSONValue()
     this->string = "";
 }
 
-// Deep copy
+// Copy constructor (Deep copy)
 JSONValue::JSONValue(const JSONValue &other)
 {
     this->type = other.type;
@@ -21,6 +21,50 @@ JSONValue::JSONValue(const JSONValue &other)
     else if (other.type == Type::ARRAY)
     {
         this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
+    }
+}
+
+// Deep copy assignment operator
+JSONValue &JSONValue::operator=(const JSONValue &other)
+{
+    if (this != &other)
+    {
+        this->type = other.type;
+        this->string = other.string; // Assuming String has a proper copy constructor
+
+        // Delete the existing memory (if applicable)
+        if (this->type == Type::OBJECT)
+        {
+            delete this->object;
+        }
+        else if (this->type == Type::ARRAY)
+        {
+            delete this->array;
+        }
+
+        // Perform a deep copy of data members
+        if (other.type == Type::OBJECT)
+        {
+            this->object = new JSONObject(*other.object); // Deep copy JSONObject
+        }
+        else if (other.type == Type::ARRAY)
+        {
+            this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
+        }
+    }
+    return *this;
+}
+
+// Destructor
+JSONValue::~JSONValue()
+{
+    if (this->type == Type::OBJECT)
+    {
+        delete this->object;
+    }
+    else if (this->type == Type::ARRAY)
+    {
+        delete this->array;
     }
 }
 
@@ -59,48 +103,6 @@ JSONValue::JSONValue(Array<JSONValue> *array)
 {
     this->type = Type::ARRAY;
     this->array = new Array<JSONValue>(array);
-}
-
-JSONValue::~JSONValue()
-{
-    std::cout << "Deleting value \n";
-    if (this->type == Type::OBJECT)
-    {
-        delete this->object;
-    }
-}
-
-JSONValue &JSONValue::operator=(const JSONValue &other)
-{
-    if (this != &other)
-    {
-        this->type = other.type;
-        std::cout << "Here is our problem \n";
-        this->string = other.string; // Assuming String has a proper copy constructor
-        std::cout << "Bet we didn't make it \n";
-
-        // Delete the existing memory (if applicable)
-        if (this->type == Type::OBJECT)
-        {
-            delete this->object;
-        }
-        else if (this->type == Type::ARRAY)
-        {
-            delete this->array;
-        }
-
-        // Perform a deep copy of data members
-        if (other.type == Type::OBJECT)
-        {
-            this->object = new JSONObject(*other.object); // Deep copy JSONObject
-        }
-        else if (other.type == Type::ARRAY)
-        {
-            this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
-        }
-    }
-    std::cout << "Copy assignment operator done";
-    return *this;
 }
 
 JSONValue *JSONValue::get(String key)

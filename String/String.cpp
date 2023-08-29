@@ -17,16 +17,51 @@ String::String(const char *str)
     this->str = newStr;
 }
 
+// Copy constructor (Deep copy)
 String::String(const String &other)
 {
-    char *newStr = new char[other.length()];
-    for (int i = 0; i < other.length(); i++)
+    if (other.str != nullptr)
     {
-        newStr[i] = other[i];
+        this->str = new char[other.length()];
+        for (int i = 0; i < other.length(); i++)
+        {
+            this->str[i] = other[i];
+        }
     }
-    this->str = newStr;
+    else
+    {
+        this->str = nullptr;
+    }
 }
 
+// Deep copy assignment operator
+String &String::operator=(const String &other)
+{
+    if (this == &other)
+    {
+        return *this; // Self-assignment, nothing to do
+    }
+
+    // Deallocate existing memory
+    delete[] this->str;
+
+    if (other.str != nullptr)
+    {
+        this->str = new char[other.length()];
+        for (int i = 0; i < other.length(); i++)
+        {
+            this->str[i] = other[i];
+        }
+    }
+    else
+    {
+        this->str = nullptr;
+    }
+
+    return *this;
+}
+
+// Destructor
 String::~String()
 {
     delete[] this->str;
@@ -88,36 +123,6 @@ String String::operator+(char character)
     return String(str);
 }
 
-String &String::operator=(const String &other)
-{
-    if (other.str == nullptr)
-    {
-        std::cout << "IT EQUALS NULL" << std::endl;
-
-        // THIS FIXES THE TESTS BUT IS NOT THE RIGHT WAY TO HANDLE THIS
-        // NEED TO FIGURE OUT HOW TO HANDLE THIS APPROPRIATELY
-
-        // THIS WAS MY FIRST ATTEMPT
-        // this->str = nullptr;
-
-        return *this;
-    }
-    else
-    {
-        std::cout << "HHEEEERRRREEE" << std::endl;
-
-        char *newStr = new char[other.length()];
-        for (int i = 0; i < other.length(); i++)
-        {
-            newStr[i] = other[i];
-        }
-        delete[] this->str;
-
-        this->str = newStr;
-        return *this;
-    }
-}
-
 char String::operator[](int index) const
 {
     return this->str[index];
@@ -129,6 +134,18 @@ char String::operator[](int index)
 }
 
 char String::operator==(const char *str)
+{
+    for (int i = 0; i < this->length(); i++)
+    {
+        if (this->str[i] != str[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+char String::operator==(String str)
 {
     for (int i = 0; i < this->length(); i++)
     {

@@ -50,11 +50,11 @@ TEST_CASE("same test but with JSONValues that have JSONObjects", "[Array]")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
     array->push(new JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World")))));
-    // array->push(new JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello")))));
-    // Array<JSONValue> *other = new Array<JSONValue>(array);
-    // REQUIRE(other->length() == 2);
-    // REQUIRE(other->get(1).equals(JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello"))))));
-    // REQUIRE(other->get(0).equals(JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World"))))));
-    // delete array;
-    // delete other;
+    array->push(new JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello")))));
+    Array<JSONValue> *other = new Array<JSONValue>(array);
+    REQUIRE(other->length() == 2);
+    REQUIRE(other->get(1).equals(JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello"))))));
+    REQUIRE(other->get(0).equals(JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World"))))));
+    delete array;
+    delete other;
 }

@@ -21,11 +21,11 @@ public:
     Array<JSONValue> *array;
     JSONValue();
     JSONValue(const JSONValue &other);
+    JSONValue &operator=(const JSONValue &other);
     JSONValue(String value);
     JSONValue(JSONValue *value);
     JSONValue(JSONObject *value);
     JSONValue(Array<JSONValue> *value);
-    JSONValue &operator=(const JSONValue &other);
     JSONValue *get(String key);
     ~JSONValue();
     void print();

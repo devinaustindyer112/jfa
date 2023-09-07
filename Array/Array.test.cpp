@@ -5,7 +5,8 @@
 #include "../catch_amalgamated.hpp"
 #include <iostream>
 
-template class Array<String>;
+// A decent amount of these tests would be made redundant
+// by writing proper tests for the String, JSONValue, and JSONObject classes.
 
 TEST_CASE("Array equals - String")
 {

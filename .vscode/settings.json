@@ -81,6 +81,7 @@
         "queue": "cpp",
         "set": "cpp",
         "span": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "future": "cpp"
     }
 }

@@ -11,7 +11,6 @@ JSONValue::JSONValue()
 // Copy constructor (Deep copy)
 JSONValue::JSONValue(const JSONValue &other)
 {
-    std::cout << "Copy JSONValue" << std::endl;
     this->type = other.type;
     this->string = other.string; // Assuming String has a proper copy constructor
 
@@ -28,7 +27,6 @@ JSONValue::JSONValue(const JSONValue &other)
 // Deep copy assignment operator
 JSONValue &JSONValue::operator=(const JSONValue &other)
 {
-    std::cout << "Assign JSONValue" << std::endl;
     if (this != &other)
     {
         this->type = other.type;
@@ -60,7 +58,6 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
 // Destructor
 JSONValue::~JSONValue()
 {
-    std::cout << "Delete JSONValue" << std::endl;
     if (this->type == Type::OBJECT)
     {
         delete this->object;
@@ -74,6 +71,7 @@ JSONValue::~JSONValue()
 JSONValue::JSONValue(String string)
 {
     this->type = Type::STRING;
+    // Check here if something breaks
     this->string = string;
 }
 

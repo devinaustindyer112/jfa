@@ -7,63 +7,225 @@
 
 template class Array<String>;
 
-// TEST_CASE("constructer with pointer to other array", "[Array]")
-// {
-//     Array<String> *array = new Array<String>();
-//     array->push(new String("Hello"));
-//     array->push(new String("World"));
-//     Array<String> *other = new Array<String>(array);
-//     REQUIRE(other->length() == 2);
-//     REQUIRE(other->get(1).equals(String("World")));
-//     REQUIRE(other->get(0).equals(String("Hello")));
-//     delete array;
-//     delete other;
-// }
-
-// TEST_CASE("same test but with JSONObects that have JSONValues", "[Array]")
-// {
-//     Array<JSONObject> *array = new Array<JSONObject>();
-//     array->push(new JSONObject(String("Hello"), new JSONValue(String("World"))));
-//     array->push(new JSONObject(String("World"), new JSONValue(String("Hello"))));
-//     Array<JSONObject> *other = new Array<JSONObject>(array);
-//     REQUIRE(other->length() == 2);
-//     REQUIRE(other->get(1).equals(JSONObject(String("World"), new JSONValue(String("Hello")))));
-//     REQUIRE(other->get(0).equals(JSONObject(String("Hello"), new JSONValue(String("World")))));
-//     delete array;
-//     delete other;
-// }
-
-// TEST_CASE("same test but with JSONValues that have strings", "[Array]")
-// {
-//     Array<JSONValue> *array = new Array<JSONValue>();
-//     array->push(new JSONValue(String("Hello")));
-//     array->push(new JSONValue(String("World")));
-//     Array<JSONValue> *other = new Array<JSONValue>(array);
-//     REQUIRE(other->length() == 2);
-//     REQUIRE(other->get(1).equals(JSONValue(String("World"))));
-//     REQUIRE(other->get(0).equals(JSONValue(String("Hello"))));
-//     delete array;
-//     delete other;
-// }
-
-TEST_CASE("same test but with JSONValues that have JSONObjects", "[Array]")
+TEST_CASE("Array equals - String")
 {
-    // =================================
-    // Rule of 3/5/0. Check it out.
-    // =================================
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    Array<String> *other = new Array<String>();
+    other->push(new String("Hello"));
+    other->push(new String("World"));
+    other->push(new String("!"));
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
 
+TEST_CASE("Array equals - JSONValue")
+{
     Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(String("Hello")));
+    array->push(new JSONValue(String("World")));
+    array->push(new JSONValue(String("!")));
+    Array<JSONValue> *other = new Array<JSONValue>();
+    other->push(new JSONValue(String("Hello")));
+    other->push(new JSONValue(String("World")));
+    other->push(new JSONValue(String("!")));
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
 
-    // JSONValue *val = new JSONValue(String("World"));
+TEST_CASE("Array equals - JSONObject")
+{
+    Array<JSONObject> *array = new Array<JSONObject>();
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    Array<JSONObject> *other = new Array<JSONObject>();
+    other->push(new JSONObject());
+    other->push(new JSONObject());
+    other->push(new JSONObject());
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
 
-    JSONObject *obj = new JSONObject(String("Hello"), new JSONValue(String("World")));
+TEST_CASE("Array push/get - String")
+{
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    array->get(0).equals(String("Hello"));
+    REQUIRE(array->get(0).equals(String("Hello")));
+    REQUIRE(array->get(1).equals(String("World")));
+    REQUIRE(array->get(2).equals(String("!")));
+    delete array;
+}
 
-    // array->push(new JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World")))));
-    // array->push(new JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello")))));
-    // Array<JSONValue> *other = new Array<JSONValue>(array);
-    // REQUIRE(other->length() == 2);
-    // REQUIRE(other->get(1).equals(JSONValue(new JSONObject(String("World"), new JSONValue(String("Hello"))))));
-    // REQUIRE(other->get(0).equals(JSONValue(new JSONObject(String("Hello"), new JSONValue(String("World"))))));
-    // delete array;
-    // delete other;
+TEST_CASE("Array push/get - JSONValue")
+{
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(String("Hello")));
+    array->push(new JSONValue(String("World")));
+    array->push(new JSONValue(String("!")));
+    REQUIRE(array->get(0).equals(JSONValue(String("Hello"))));
+    REQUIRE(array->get(1).equals(JSONValue(String("World"))));
+    REQUIRE(array->get(2).equals(JSONValue(String("!"))));
+    delete array;
+}
+
+TEST_CASE("Array push/get - JSONObject")
+{
+    Array<JSONObject> *array = new Array<JSONObject>();
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    REQUIRE(array->get(0).equals(JSONObject()));
+    REQUIRE(array->get(1).equals(JSONObject()));
+    REQUIRE(array->get(2).equals(JSONObject()));
+    delete array;
+}
+
+TEST_CASE("Array push/get - by String value")
+{
+    Array<String> *array = new Array<String>();
+    array->push(String("Hello"));
+    array->push(String("World"));
+    array->push(String("!"));
+    array->get(0).equals(String("Hello"));
+    REQUIRE(array->get(0).equals(String("Hello")));
+    REQUIRE(array->get(1).equals(String("World")));
+    REQUIRE(array->get(2).equals(String("!")));
+    delete array;
+}
+
+TEST_CASE("Array deoesn't equal - String")
+{
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    Array<String> *other = new Array<String>();
+    other->push(new String("Hello"));
+    other->push(new String("World"));
+    other->push(new String("?"));
+    REQUIRE(!array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array doesn't equal - JSONValue")
+{
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(String("Hello")));
+    array->push(new JSONValue(String("World")));
+    array->push(new JSONValue(String("!")));
+    Array<JSONValue> *other = new Array<JSONValue>();
+    other->push(new JSONValue(String("Hello")));
+    other->push(new JSONValue(String("World")));
+    other->push(new JSONValue(String("?")));
+    REQUIRE(!array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array doesn't equal - JSONObject")
+{
+    Array<JSONObject> *array = new Array<JSONObject>();
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    Array<JSONObject> *other = new Array<JSONObject>();
+    other->push(new JSONObject());
+    other->push(new JSONObject());
+    REQUIRE(!array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array copy constructor - String")
+{
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    Array<String> *other = new Array<String>(array);
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array copy constructor - JSONValue")
+{
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(String("Hello")));
+    array->push(new JSONValue(String("World")));
+    array->push(new JSONValue(String("!")));
+    Array<JSONValue> *other = new Array<JSONValue>(array);
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array copy constructor - JSONObject")
+{
+    Array<JSONObject> *array = new Array<JSONObject>();
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    Array<JSONObject> *other = new Array<JSONObject>(array);
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array pointer constructor")
+{
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    Array<String> *other = new Array<String>(array);
+    REQUIRE(array->equals(other));
+    delete array;
+    delete other;
+}
+
+TEST_CASE("Array pop - String")
+{
+    Array<String> *array = new Array<String>();
+    array->push(new String("Hello"));
+    array->push(new String("World"));
+    array->push(new String("!"));
+    REQUIRE(array->pop().equals(String("!")));
+    REQUIRE(array->pop().equals(String("World")));
+    REQUIRE(array->pop().equals(String("Hello")));
+    delete array;
+}
+
+TEST_CASE("Array pop - JSONValue")
+{
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(new JSONValue(String("Hello")));
+    array->push(new JSONValue(String("World")));
+    array->push(new JSONValue(String("!")));
+    REQUIRE(array->pop().equals(JSONValue(String("!"))));
+    REQUIRE(array->pop().equals(JSONValue(String("World"))));
+    REQUIRE(array->pop().equals(JSONValue(String("Hello"))));
+    delete array;
+}
+
+TEST_CASE("Array pop - JSONObject")
+{
+    Array<JSONObject> *array = new Array<JSONObject>();
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    array->push(new JSONObject());
+    REQUIRE(array->pop().equals(JSONObject()));
+    REQUIRE(array->pop().equals(JSONObject()));
+    REQUIRE(array->pop().equals(JSONObject()));
+    delete array;
 }

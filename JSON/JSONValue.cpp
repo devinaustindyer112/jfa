@@ -106,7 +106,7 @@ JSONValue::JSONValue(Array<JSONValue> *array)
     this->array = new Array<JSONValue>(array);
 }
 
-JSONValue *JSONValue::get(String key)
+JSONValue JSONValue::get(String key)
 {
     if (this->type == JSONValue::Type::OBJECT)
     {
@@ -114,12 +114,12 @@ JSONValue *JSONValue::get(String key)
     }
     else if (this->type == JSONValue::Type::ARRAY)
     {
-        //=========
-        // This needs to be fixed
-        //=========
         return this->array->get(0).get(key);
     }
-    return nullptr;
+    else
+    {
+        return this->string;
+    }
 }
 
 void JSONValue::print()

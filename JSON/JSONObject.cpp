@@ -44,7 +44,7 @@ JSONObject::JSONObject(JSONObject *object)
     this->value = new JSONValue(object->value);
 }
 
-JSONValue *JSONObject::get(String key)
+JSONValue JSONObject::get(String key)
 {
     if (this->key.equals(key))
     {

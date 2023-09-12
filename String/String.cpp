@@ -159,6 +159,9 @@ char String::operator==(String str)
 
 bool String::equals(String str)
 {
+    if (this->length() != str.length())
+        return false;
+
     for (int i = 0; i < str.length(); i++)
     {
         if (this->str[i] != str[i])

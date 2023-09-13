@@ -4,8 +4,7 @@
 
 JSONValue::JSONValue()
 {
-    this->type = Type::STRING;
-    this->string = "";
+    this->type = Type::NULL_VALUE;
 }
 
 // Copy constructor (Deep copy)
@@ -21,6 +20,10 @@ JSONValue::JSONValue(const JSONValue &other)
     else if (other.type == Type::ARRAY)
     {
         this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
+    }
+    else if (other.type == Type::NULL_VALUE)
+    {
+        this->type = Type::NULL_VALUE;
     }
 }
 
@@ -114,11 +117,34 @@ JSONValue JSONValue::get(String key)
     }
     else if (this->type == JSONValue::Type::ARRAY)
     {
-        return this->array->get(0).get(key);
+        JSONValue value;
+        int index = 0;
+        do
+        {
+            value = this->array->get(index).get(key);
+            index++;
+        } while (!value.isNull() && index < this->array->length());
+        return value;
+    }
+    else if (this->type == JSONValue::Type::STRING)
+    {
+        return this;
     }
     else
     {
-        return this->string;
+        return JSONValue();
+    }
+}
+
+JSONValue JSONValue::get(int index)
+{
+    if (this->type == JSONValue::Type::ARRAY)
+    {
+        return this->array->get(index);
+    }
+    else
+    {
+        return JSONValue();
     }
 }
 
@@ -137,6 +163,11 @@ void JSONValue::print()
         std::cout << "printing array";
         this->array->print();
     }
+}
+
+bool JSONValue::isNull()
+{
+    return this->type == JSONValue::Type::NULL_VALUE;
 }
 
 bool JSONValue::equals(JSONValue *value)

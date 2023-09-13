@@ -13,6 +13,7 @@ public:
         OBJECT,
         ARRAY,
         STRING,
+        NULL_VALUE,
     };
 
     Type type;
@@ -27,8 +28,10 @@ public:
     JSONValue(JSONObject *value);
     JSONValue(Array<JSONValue> *value);
     JSONValue get(String key);
+    JSONValue get(int index);
     ~JSONValue();
     void print();
+    bool isNull();
     bool equals(JSONValue *value);
     bool equals(JSONValue value);
 };

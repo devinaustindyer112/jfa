@@ -32,7 +32,7 @@ JSONObject::~JSONObject()
     delete this->value;
 }
 
-JSONObject::JSONObject(String key, JSONValue *value)
+JSONObject::JSONObject(JFA::String key, JSONValue *value)
 {
     this->key = key;
     this->value = new JSONValue(value);
@@ -44,7 +44,7 @@ JSONObject::JSONObject(JSONObject *object)
     this->value = new JSONValue(object->value);
 }
 
-JSONValue JSONObject::get(String key)
+JSONValue JSONObject::get(JFA::String key)
 {
     if (this->key.equals(key))
     {

@@ -71,7 +71,7 @@ JSONValue::~JSONValue()
     }
 }
 
-JSONValue::JSONValue(String string)
+JSONValue::JSONValue(JFA::String string)
 {
     this->type = Type::STRING;
     // Check here if something breaks
@@ -109,7 +109,7 @@ JSONValue::JSONValue(Array<JSONValue> *array)
     this->array = new Array<JSONValue>(array);
 }
 
-JSONValue JSONValue::get(String key)
+JSONValue JSONValue::get(JFA::String key)
 {
     if (this->type == JSONValue::Type::OBJECT)
     {

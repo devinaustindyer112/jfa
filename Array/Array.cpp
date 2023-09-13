@@ -1,6 +1,7 @@
 #include "Array.hpp"
 #include "../String/String.hpp"
-#include "../Parser/Parser.hpp"
+#include "../JSON/JSONValue.hpp"
+#include "../JSON/JSONObject.hpp"
 #include <iostream>
 
 template <typename T>
@@ -146,6 +147,6 @@ void Array<T>::print()
     std::cout << "]";
 }
 
-template class Array<String>;
+template class Array<JFA::String>;
 template class Array<JSONValue>;
 template class Array<JSONObject>;

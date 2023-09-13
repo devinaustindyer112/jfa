@@ -17,17 +17,17 @@ public:
     };
 
     Type type;
-    String string;
+    JFA::String string;
     JSONObject *object;
     Array<JSONValue> *array;
     JSONValue();
     JSONValue(const JSONValue &other);
     JSONValue &operator=(const JSONValue &other);
-    JSONValue(String value);
+    JSONValue(JFA::String value);
     JSONValue(JSONValue *value);
     JSONValue(JSONObject *value);
     JSONValue(Array<JSONValue> *value);
-    JSONValue get(String key);
+    JSONValue get(JFA::String key);
     JSONValue get(int index);
     ~JSONValue();
     void print();

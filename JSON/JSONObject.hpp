@@ -6,14 +6,14 @@
 class JSONObject
 {
 public:
-    String key;
+    JFA::String key;
     JSONValue *value;
     JSONObject();
     JSONObject(const JSONObject &other);
     JSONObject &operator=(const JSONObject &other);
-    JSONObject(String key, JSONValue *value);
+    JSONObject(JFA::String key, JSONValue *value);
     JSONObject(JSONObject *object);
-    JSONValue get(String key);
+    JSONValue get(JFA::String key);
     ~JSONObject();
     bool equals(JSONObject *object);
     bool equals(JSONObject object);

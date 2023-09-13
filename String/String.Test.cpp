@@ -4,15 +4,15 @@
 
 TEST_CASE("substring", "[substring]")
 {
-    String str1 = String("test");
-    String str2 = String("es");
+    JFA::String str1 = JFA::String("test");
+    JFA::String str2 = JFA::String("es");
     REQUIRE(str1.equals(str2) == false);
 }
 
 TEST_CASE("length", "[length]")
 {
-    String *str1 = new String("test");
-    String *str2 = new String("");
+    JFA::String *str1 = new JFA::String("test");
+    JFA::String *str2 = new JFA::String("");
 
     REQUIRE(str1->length() == 4);
     REQUIRE(str2->length() == 0);
@@ -20,8 +20,8 @@ TEST_CASE("length", "[length]")
 
 TEST_CASE("charAt", "[charAt]")
 {
-    String *str1 = new String("test");
-    String *str2 = new String("");
+    JFA::String *str1 = new JFA::String("test");
+    JFA::String *str2 = new JFA::String("");
 
     REQUIRE(str1->length() == 4);
     REQUIRE(str2->length() == 0);
@@ -29,25 +29,25 @@ TEST_CASE("charAt", "[charAt]")
 
 TEST_CASE("operator+", "[operator+]")
 {
-    String str1 = String("test");
-    String str2 = String("er");
+    JFA::String str1 = JFA::String("test");
+    JFA::String str2 = JFA::String("er");
 
-    String str3 = str1 + str2;
+    JFA::String str3 = str1 + str2;
 
-    REQUIRE(str3 == String("tester"));
+    REQUIRE(str3 == JFA::String("tester"));
 }
 
 TEST_CASE("operator+ with char", "[operator+ with char]")
 {
-    String str1 = String("test");
-    String str2 = str1 + 's';
+    JFA::String str1 = JFA::String("test");
+    JFA::String str2 = str1 + 's';
 
-    REQUIRE(str2 == String("tests"));
+    REQUIRE(str2 == JFA::String("tests"));
 }
 
 TEST_CASE("indexOf", "[indexOf]")
 {
-    String str = String("These are a bunch of words.");
+    JFA::String str = JFA::String("These are a bunch of words.");
 
     REQUIRE(str.indexOf("bunch") == 12);
     REQUIRE(str.indexOf("are a") == 6);
@@ -56,16 +56,16 @@ TEST_CASE("indexOf", "[indexOf]")
 
 TEST_CASE("replace", "[replace]")
 {
-    String str = String("These are a bunch of words.");
-    String replaced = str.replace("bunch", "lot");
+    JFA::String str = JFA::String("These are a bunch of words.");
+    JFA::String replaced = str.replace("bunch", "lot");
 
     REQUIRE(strCompare(replaced.toCharArray(), "These are a lot of words.") == 1);
 }
 
 TEST_CASE("replaceAll", "[replaceAll]")
 {
-    String str = String("These are a bunch of words.");
-    String replaced = str.replaceAll(" ", "");
+    JFA::String str = JFA::String("These are a bunch of words.");
+    JFA::String replaced = str.replaceAll(" ", "");
 
     REQUIRE(strCompare(replaced.toCharArray(), "Theseareabunchofwords.") == 1);
     REQUIRE(replaced.length() == 22);
@@ -73,6 +73,6 @@ TEST_CASE("replaceAll", "[replaceAll]")
 
 TEST_CASE("print", "[print]")
 {
-    String str = String("This should print for the world to see.");
+    JFA::String str = JFA::String("This should print for the world to see.");
     str.print();
 }

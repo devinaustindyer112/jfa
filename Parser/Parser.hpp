@@ -21,7 +21,7 @@ private:
     void eat(JSONToken::Type type);
 
 public:
-    Parser(String str);
+    Parser(JFA::String str);
     ~Parser();
     void parse();
     void print();

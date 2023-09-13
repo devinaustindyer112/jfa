@@ -10,14 +10,14 @@
 
 TEST_CASE("Array equals - String")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    Array<String> *other = new Array<String>();
-    other->push(new String("Hello"));
-    other->push(new String("World"));
-    other->push(new String("!"));
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    Array<JFA::String> *other = new Array<JFA::String>();
+    other->push(new JFA::String("Hello"));
+    other->push(new JFA::String("World"));
+    other->push(new JFA::String("!"));
     REQUIRE(array->equals(other));
     delete array;
     delete other;
@@ -26,13 +26,13 @@ TEST_CASE("Array equals - String")
 TEST_CASE("Array equals - JSONValue")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
-    array->push(new JSONValue(String("Hello")));
-    array->push(new JSONValue(String("World")));
-    array->push(new JSONValue(String("!")));
+    array->push(new JSONValue(JFA::String("Hello")));
+    array->push(new JSONValue(JFA::String("World")));
+    array->push(new JSONValue(JFA::String("!")));
     Array<JSONValue> *other = new Array<JSONValue>();
-    other->push(new JSONValue(String("Hello")));
-    other->push(new JSONValue(String("World")));
-    other->push(new JSONValue(String("!")));
+    other->push(new JSONValue(JFA::String("Hello")));
+    other->push(new JSONValue(JFA::String("World")));
+    other->push(new JSONValue(JFA::String("!")));
     REQUIRE(array->equals(other));
     delete array;
     delete other;
@@ -55,26 +55,26 @@ TEST_CASE("Array equals - JSONObject")
 
 TEST_CASE("Array push/get - String")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    array->get(0).equals(String("Hello"));
-    REQUIRE(array->get(0).equals(String("Hello")));
-    REQUIRE(array->get(1).equals(String("World")));
-    REQUIRE(array->get(2).equals(String("!")));
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    array->get(0).equals(JFA::String("Hello"));
+    REQUIRE(array->get(0).equals(JFA::String("Hello")));
+    REQUIRE(array->get(1).equals(JFA::String("World")));
+    REQUIRE(array->get(2).equals(JFA::String("!")));
     delete array;
 }
 
 TEST_CASE("Array push/get - JSONValue")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
-    array->push(new JSONValue(String("Hello")));
-    array->push(new JSONValue(String("World")));
-    array->push(new JSONValue(String("!")));
-    REQUIRE(array->get(0).equals(JSONValue(String("Hello"))));
-    REQUIRE(array->get(1).equals(JSONValue(String("World"))));
-    REQUIRE(array->get(2).equals(JSONValue(String("!"))));
+    array->push(new JSONValue(JFA::String("Hello")));
+    array->push(new JSONValue(JFA::String("World")));
+    array->push(new JSONValue(JFA::String("!")));
+    REQUIRE(array->get(0).equals(JSONValue(JFA::String("Hello"))));
+    REQUIRE(array->get(1).equals(JSONValue(JFA::String("World"))));
+    REQUIRE(array->get(2).equals(JSONValue(JFA::String("!"))));
     delete array;
 }
 
@@ -92,27 +92,27 @@ TEST_CASE("Array push/get - JSONObject")
 
 TEST_CASE("Array push/get - by String value")
 {
-    Array<String> *array = new Array<String>();
-    array->push(String("Hello"));
-    array->push(String("World"));
-    array->push(String("!"));
-    array->get(0).equals(String("Hello"));
-    REQUIRE(array->get(0).equals(String("Hello")));
-    REQUIRE(array->get(1).equals(String("World")));
-    REQUIRE(array->get(2).equals(String("!")));
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(JFA::String("Hello"));
+    array->push(JFA::String("World"));
+    array->push(JFA::String("!"));
+    array->get(0).equals(JFA::String("Hello"));
+    REQUIRE(array->get(0).equals(JFA::String("Hello")));
+    REQUIRE(array->get(1).equals(JFA::String("World")));
+    REQUIRE(array->get(2).equals(JFA::String("!")));
     delete array;
 }
 
 TEST_CASE("Array deoesn't equal - String")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    Array<String> *other = new Array<String>();
-    other->push(new String("Hello"));
-    other->push(new String("World"));
-    other->push(new String("?"));
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    Array<JFA::String> *other = new Array<JFA::String>();
+    other->push(new JFA::String("Hello"));
+    other->push(new JFA::String("World"));
+    other->push(new JFA::String("?"));
     REQUIRE(!array->equals(other));
     delete array;
     delete other;
@@ -121,13 +121,13 @@ TEST_CASE("Array deoesn't equal - String")
 TEST_CASE("Array doesn't equal - JSONValue")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
-    array->push(new JSONValue(String("Hello")));
-    array->push(new JSONValue(String("World")));
-    array->push(new JSONValue(String("!")));
+    array->push(new JSONValue(JFA::String("Hello")));
+    array->push(new JSONValue(JFA::String("World")));
+    array->push(new JSONValue(JFA::String("!")));
     Array<JSONValue> *other = new Array<JSONValue>();
-    other->push(new JSONValue(String("Hello")));
-    other->push(new JSONValue(String("World")));
-    other->push(new JSONValue(String("?")));
+    other->push(new JSONValue(JFA::String("Hello")));
+    other->push(new JSONValue(JFA::String("World")));
+    other->push(new JSONValue(JFA::String("?")));
     REQUIRE(!array->equals(other));
     delete array;
     delete other;
@@ -149,11 +149,11 @@ TEST_CASE("Array doesn't equal - JSONObject")
 
 TEST_CASE("Array copy constructor - String")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    Array<String> *other = new Array<String>(array);
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    Array<JFA::String> *other = new Array<JFA::String>(array);
     REQUIRE(array->equals(other));
     delete array;
     delete other;
@@ -162,9 +162,9 @@ TEST_CASE("Array copy constructor - String")
 TEST_CASE("Array copy constructor - JSONValue")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
-    array->push(new JSONValue(String("Hello")));
-    array->push(new JSONValue(String("World")));
-    array->push(new JSONValue(String("!")));
+    array->push(new JSONValue(JFA::String("Hello")));
+    array->push(new JSONValue(JFA::String("World")));
+    array->push(new JSONValue(JFA::String("!")));
     Array<JSONValue> *other = new Array<JSONValue>(array);
     REQUIRE(array->equals(other));
     delete array;
@@ -185,11 +185,11 @@ TEST_CASE("Array copy constructor - JSONObject")
 
 TEST_CASE("Array pointer constructor")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    Array<String> *other = new Array<String>(array);
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    Array<JFA::String> *other = new Array<JFA::String>(array);
     REQUIRE(array->equals(other));
     delete array;
     delete other;
@@ -197,25 +197,25 @@ TEST_CASE("Array pointer constructor")
 
 TEST_CASE("Array pop - String")
 {
-    Array<String> *array = new Array<String>();
-    array->push(new String("Hello"));
-    array->push(new String("World"));
-    array->push(new String("!"));
-    REQUIRE(array->pop().equals(String("!")));
-    REQUIRE(array->pop().equals(String("World")));
-    REQUIRE(array->pop().equals(String("Hello")));
+    Array<JFA::String> *array = new Array<JFA::String>();
+    array->push(new JFA::String("Hello"));
+    array->push(new JFA::String("World"));
+    array->push(new JFA::String("!"));
+    REQUIRE(array->pop().equals(JFA::String("!")));
+    REQUIRE(array->pop().equals(JFA::String("World")));
+    REQUIRE(array->pop().equals(JFA::String("Hello")));
     delete array;
 }
 
 TEST_CASE("Array pop - JSONValue")
 {
     Array<JSONValue> *array = new Array<JSONValue>();
-    array->push(new JSONValue(String("Hello")));
-    array->push(new JSONValue(String("World")));
-    array->push(new JSONValue(String("!")));
-    REQUIRE(array->pop().equals(JSONValue(String("!"))));
-    REQUIRE(array->pop().equals(JSONValue(String("World"))));
-    REQUIRE(array->pop().equals(JSONValue(String("Hello"))));
+    array->push(new JSONValue(JFA::String("Hello")));
+    array->push(new JSONValue(JFA::String("World")));
+    array->push(new JSONValue(JFA::String("!")));
+    REQUIRE(array->pop().equals(JSONValue(JFA::String("!"))));
+    REQUIRE(array->pop().equals(JSONValue(JFA::String("World"))));
+    REQUIRE(array->pop().equals(JSONValue(JFA::String("Hello"))));
     delete array;
 }
 

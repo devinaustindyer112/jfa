@@ -4,14 +4,14 @@
 JSONObject::JSONObject()
 {
     this->key = "";
-    this->value = new JSONValue();
+    this->value = nullptr;
 }
 
 // Copy constructor (Deep copy)
 JSONObject::JSONObject(const JSONObject &other)
 {
     this->key = other.key;
-    this->value = new JSONValue(*other.value);
+    this->value = other.value;
 }
 
 // Deep copy assignment operator
@@ -21,8 +21,9 @@ JSONObject &JSONObject::operator=(const JSONObject &other)
     {
         this->key = other.key;
         delete this->value;
-        this->value = new JSONValue(*other.value);
+        *this->value = *other.value;
     }
+    std::cout << "JSONObject assignment operator" << std::endl;
     return *this;
 }
 
@@ -35,13 +36,13 @@ JSONObject::~JSONObject()
 JSONObject::JSONObject(JFA::String key, JSONValue *value)
 {
     this->key = key;
-    this->value = new JSONValue(value);
+    this->value = value;
 }
 
 JSONObject::JSONObject(JSONObject *object)
 {
     this->key = object->key;
-    this->value = new JSONValue(object->value);
+    this->value = object->value;
 }
 
 JSONValue JSONObject::get(JFA::String key)

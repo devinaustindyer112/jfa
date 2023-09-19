@@ -2,10 +2,53 @@
 #include "../Utilities/Utilities.hpp"
 #include "../catch_amalgamated.hpp"
 
+TEST_CASE("constructors", "[constructors]")
+{
+    JFA::String str1 = JFA::String();
+    REQUIRE(str1.str == nullptr);
+
+    JFA::String str2 = JFA::String("test");
+    REQUIRE(strCompare(str2.str, "test"));
+
+    JFA::String *str3 = new JFA::String("test");
+    REQUIRE(strCompare(str3->str, "test"));
+
+    delete str3;
+}
+
+TEST_CASE("copy constructor", "[copy constructor]")
+{
+    JFA::String str1 = JFA::String("test");
+    JFA::String str2 = JFA::String(str1);
+
+    REQUIRE(strCompare(str2.str, "test"));
+}
+
+TEST_CASE("assignment operator", "[assignment operator]")
+{
+    JFA::String str1 = JFA::String();
+    JFA::String str2 = JFA::String("test");
+
+    str1 = str2;
+
+    REQUIRE(strCompare(str2.str, "test"));
+}
+
+TEST_CASE("equals", "[equals]")
+{
+    JFA::String str1 = JFA::String("test");
+    JFA::String str2 = JFA::String("test");
+    JFA::String str3 = JFA::String("test2");
+
+    REQUIRE(str1.equals(str2) == true);
+    REQUIRE(str1.equals(str3) == false);
+}
+
 TEST_CASE("substring", "[substring]")
 {
     JFA::String str1 = JFA::String("test");
-    JFA::String str2 = JFA::String("es");
+    JFA::String str2 = str1.substring(1, 3);
+
     REQUIRE(str1.equals(str2) == false);
 }
 

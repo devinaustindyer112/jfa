@@ -5,6 +5,9 @@
 JSONValue::JSONValue()
 {
     this->type = Type::NULL_VALUE;
+    // this->string = "";
+    // this->object = new JSONObject();
+    // this->array = new Array<JSONValue>();
 }
 
 // Copy constructor (Deep copy)
@@ -15,7 +18,7 @@ JSONValue::JSONValue(const JSONValue &other)
 
     if (other.type == Type::OBJECT)
     {
-        this->object = new JSONObject(*other.object); // Deep copy JSONObject
+        this->object = other.object; // Deep copy JSONObject
     }
     else if (other.type == Type::ARRAY)
     {
@@ -30,10 +33,12 @@ JSONValue::JSONValue(const JSONValue &other)
 // Deep copy assignment operator
 JSONValue &JSONValue::operator=(const JSONValue &other)
 {
+    std::cout << "JSONValue assignment operator" << std::endl;
+
     if (this != &other)
     {
         this->type = other.type;
-        this->string = other.string; // Assuming String has a proper copy constructor
+        this->string = other.string;
 
         // Delete the existing memory (if applicable)
         if (this->type == Type::OBJECT)
@@ -48,7 +53,7 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
         // Perform a deep copy of data members
         if (other.type == Type::OBJECT)
         {
-            this->object = new JSONObject(*other.object); // Deep copy JSONObject
+            this->object = other.object;
         }
         else if (other.type == Type::ARRAY)
         {
@@ -83,7 +88,7 @@ JSONValue::JSONValue(JSONValue *value)
     if (value->type == Type::OBJECT)
     {
         this->type = Type::OBJECT;
-        this->object = new JSONObject(value->object);
+        this->object = value->object;
     }
     else if (value->type == Type::STRING)
     {
@@ -100,7 +105,7 @@ JSONValue::JSONValue(JSONValue *value)
 JSONValue::JSONValue(JSONObject *object)
 {
     this->type = Type::OBJECT;
-    this->object = new JSONObject(object);
+    this->object = object;
 }
 
 JSONValue::JSONValue(Array<JSONValue> *array)
@@ -128,7 +133,7 @@ JSONValue JSONValue::get(JFA::String key)
     }
     else if (this->type == JSONValue::Type::STRING)
     {
-        return this;
+        return this->string;
     }
     else
     {
@@ -160,7 +165,6 @@ void JSONValue::print()
     }
     else if (this->type == JSONValue::Type::ARRAY)
     {
-        std::cout << "printing array";
         this->array->print();
     }
 }

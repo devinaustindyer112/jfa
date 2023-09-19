@@ -5,10 +5,8 @@ namespace JFA
 {
     class String
     {
-    private:
-        char *str;
-
     public:
+        char *str;
         String();
         String(const char *str);
         String(const String &str);

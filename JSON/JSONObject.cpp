@@ -11,7 +11,7 @@ JSONObject::JSONObject()
 JSONObject::JSONObject(const JSONObject &other)
 {
     this->key = other.key;
-    this->value = other.value;
+    this->value = new JSONValue(*other.value);
 }
 
 // Deep copy assignment operator
@@ -21,7 +21,7 @@ JSONObject &JSONObject::operator=(const JSONObject &other)
     {
         this->key = other.key;
         delete this->value;
-        *this->value = *other.value;
+        this->value = new JSONValue(*other.value);
     }
     std::cout << "JSONObject assignment operator" << std::endl;
     return *this;
@@ -33,23 +33,17 @@ JSONObject::~JSONObject()
     delete this->value;
 }
 
-JSONObject::JSONObject(JFA::String key, JSONValue *value)
+JSONObject::JSONObject(JFA::String key, JSONValue value)
 {
     this->key = key;
-    this->value = value;
-}
-
-JSONObject::JSONObject(JSONObject *object)
-{
-    this->key = object->key;
-    this->value = object->value;
+    this->value = new JSONValue(value);
 }
 
 JSONValue JSONObject::get(JFA::String key)
 {
-    if (this->key.equals(key))
+    if (this->key == key)
     {
-        return this->value;
+        return *this->value;
     }
     else
     {
@@ -59,12 +53,12 @@ JSONValue JSONObject::get(JFA::String key)
 
 bool JSONObject::equals(JSONObject *object)
 {
-    return this->key.equals(object->key) && this->value->equals(object->value);
+    return this->key == object->key && this->value->equals(*object->value);
 }
 
 bool JSONObject::equals(JSONObject object)
 {
-    return this->key.equals(object.key) && this->value->equals(object.value);
+    return this->key == object.key && this->value->equals(*object.value);
 }
 
 void JSONObject::print()

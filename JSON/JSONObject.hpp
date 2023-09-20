@@ -10,8 +10,7 @@ public:
     JSONValue *value;
     JSONObject();
     JSONObject(const JSONObject &other);
-    JSONObject(JFA::String key, JSONValue *value);
-    JSONObject(JSONObject *object);
+    JSONObject(JFA::String key, JSONValue value);
     JSONObject &operator=(const JSONObject &other);
     JSONValue get(JFA::String key);
     ~JSONObject();

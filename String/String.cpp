@@ -135,6 +135,9 @@ char JFA::String::operator[](int index)
 
 char JFA::String::operator==(const char *str)
 {
+    if (this->length() != size(str))
+        return false;
+
     for (int i = 0; i < this->length(); i++)
     {
         if (this->str[i] != str[i])
@@ -147,6 +150,9 @@ char JFA::String::operator==(const char *str)
 
 char JFA::String::operator==(JFA::String str)
 {
+    if (this->length() != str.length())
+        return false;
+
     for (int i = 0; i < this->length(); i++)
     {
         if (this->str[i] != str[i])
@@ -170,12 +176,6 @@ bool JFA::String::equals(JFA::String str)
         }
     }
     return true;
-}
-
-const char *JFA::String::toCharArray()
-{
-    const char *str = this->str;
-    return str;
 }
 
 int JFA::String::indexOf(const char *search)

@@ -22,17 +22,16 @@ public:
     Array<JSONValue> *array;
     JSONValue();
     JSONValue(const JSONValue &other);
-    JSONValue &operator=(const JSONValue &other);
     JSONValue(JFA::String value);
-    JSONValue(JSONValue *value);
-    JSONValue(JSONObject *value);
+    JSONValue(JSONObject value);
     JSONValue(Array<JSONValue> *value);
+    JSONValue &operator=(const JSONValue &other);
     JSONValue get(JFA::String key);
     JSONValue get(int index);
     ~JSONValue();
     void print();
     bool isNull();
-    bool equals(JSONValue *value);
+    char operator==(JSONValue str);
     bool equals(JSONValue value);
 };
 

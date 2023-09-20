@@ -5,20 +5,21 @@
 JSONValue::JSONValue()
 {
     this->type = Type::NULL_VALUE;
-    // this->string = "";
-    // this->object = new JSONObject();
-    // this->array = new Array<JSONValue>();
+    this->string = "";
+    this->object = nullptr;
+    this->array = nullptr;
 }
 
 // Copy constructor (Deep copy)
 JSONValue::JSONValue(const JSONValue &other)
 {
+    std::cout << "JSONValue copy constructor" << std::endl;
     this->type = other.type;
     this->string = other.string; // Assuming String has a proper copy constructor
 
     if (other.type == Type::OBJECT)
     {
-        this->object = other.object; // Deep copy JSONObject
+        this->object = new JSONObject(*other.object); // Deep copy JSONObject
     }
     else if (other.type == Type::ARRAY)
     {
@@ -34,7 +35,6 @@ JSONValue::JSONValue(const JSONValue &other)
 JSONValue &JSONValue::operator=(const JSONValue &other)
 {
     std::cout << "JSONValue assignment operator" << std::endl;
-
     if (this != &other)
     {
         this->type = other.type;
@@ -53,7 +53,7 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
         // Perform a deep copy of data members
         if (other.type == Type::OBJECT)
         {
-            this->object = other.object;
+            this->object = new JSONObject(*other.object);
         }
         else if (other.type == Type::ARRAY)
         {
@@ -79,33 +79,13 @@ JSONValue::~JSONValue()
 JSONValue::JSONValue(JFA::String string)
 {
     this->type = Type::STRING;
-    // Check here if something breaks
     this->string = string;
 }
 
-JSONValue::JSONValue(JSONValue *value)
-{
-    if (value->type == Type::OBJECT)
-    {
-        this->type = Type::OBJECT;
-        this->object = value->object;
-    }
-    else if (value->type == Type::STRING)
-    {
-        this->type = Type::STRING;
-        this->string = value->string;
-    }
-    else if (value->type == Type::ARRAY)
-    {
-        this->type = Type::ARRAY;
-        this->array = new Array<JSONValue>(value->array);
-    }
-}
-
-JSONValue::JSONValue(JSONObject *object)
+JSONValue::JSONValue(JSONObject object)
 {
     this->type = Type::OBJECT;
-    this->object = object;
+    this->object = new JSONObject(object);
 }
 
 JSONValue::JSONValue(Array<JSONValue> *array)
@@ -174,19 +154,19 @@ bool JSONValue::isNull()
     return this->type == JSONValue::Type::NULL_VALUE;
 }
 
-bool JSONValue::equals(JSONValue *value)
+char JSONValue::operator==(JSONValue str)
 {
-    if (this->type == JSONValue::Type::STRING && value->type == JSONValue::Type::STRING)
+    if (this->type == JSONValue::Type::STRING && str.type == JSONValue::Type::STRING)
     {
-        return this->string.equals(value->string);
+        return this->string == str.string;
     }
-    if (this->type == JSONValue::Type::ARRAY && value->type == JSONValue::Type::ARRAY)
+    if (this->type == JSONValue::Type::ARRAY && str.type == JSONValue::Type::ARRAY)
     {
-        return this->array->equals(value->array);
+        return this->array == str.array;
     }
-    if (this->type == JSONValue::Type::OBJECT && value->type == JSONValue::Type::OBJECT)
+    if (this->type == JSONValue::Type::OBJECT && str.type == JSONValue::Type::OBJECT)
     {
-        return this->object->equals(value->object);
+        return this->object == str.object;
     }
     return false;
 }
@@ -195,7 +175,7 @@ bool JSONValue::equals(JSONValue value)
 {
     if (this->type == JSONValue::Type::STRING && value.type == JSONValue::Type::STRING)
     {
-        return this->string.equals(value.string);
+        return this->string == value.string;
     }
     if (this->type == JSONValue::Type::ARRAY && value.type == JSONValue::Type::ARRAY)
     {

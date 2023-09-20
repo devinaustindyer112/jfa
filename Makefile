@@ -17,11 +17,13 @@ test-tokenizer: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp 
 	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
 	./test-tokenizer
 
-test-json: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
-	g++ -std=c++14 -o test-json catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSON.Test.cpp
-	./test-json
+test-json-value: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSONValue.Test.cpp
+	g++ -std=c++14 -o test-json-value catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSONValue.Test.cpp
+	./test-json-value
 
-
+test-json-object: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSONObject.Test.cpp
+	g++ -std=c++14 -o test-json-object catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSONObject.Test.cpp
+	./test-json-object
 
 clean: 
 	rm -f test-*

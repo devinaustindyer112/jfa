@@ -4,13 +4,6 @@
 #include "../catch_amalgamated.hpp"
 #include <iostream>
 
-// Write smart comprehensive tests
-// Follow the pattern of the tests in String.test.cpp
-
-// ==========
-// Start here
-// ==========
-
 TEST_CASE("constructors")
 {
     JSONValue value = JSONValue();
@@ -26,6 +19,20 @@ TEST_CASE("constructors")
     JSONValue value3 = value2;
     REQUIRE(value3.type == JSONValue::Type::STRING);
     REQUIRE(value3.string == "Hello");
+
+    JSONValue value4 = JSONValue(JSONObject("key", JSONValue("value")));
+    REQUIRE(value4.type == JSONValue::Type::OBJECT);
+    REQUIRE(value4.object->key == "key");
+    REQUIRE(value4.object->value->string == "value");
+
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(JSONValue("Hello"));
+    array->push(JSONValue("World"));
+    JSONValue value5 = JSONValue(array);
+    REQUIRE(value5.type == JSONValue::Type::ARRAY);
+    // Figure out why this doesn't work
+    REQUIRE(value5.array->get(0).string == "Hello");
+    REQUIRE(value5.array->get(1).string == "World");
 }
 
 TEST_CASE("assignment operator")
@@ -39,4 +46,11 @@ TEST_CASE("assignment operator")
 
 TEST_CASE("get")
 {
+    JSONObject object = JSONObject("key", JSONValue("value"));
+    JSONValue value = JSONValue(object);
+    JSONValue value2 = value.get("key");
+    REQUIRE(value2.string == "value");
+
+    // Continue here. You may want to add tests
+    // for the object constructors and stuff above
 }

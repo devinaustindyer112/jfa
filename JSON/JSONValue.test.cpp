@@ -39,23 +39,4 @@ TEST_CASE("assignment operator")
 
 TEST_CASE("get")
 {
-    // Works
-    // JSONValue val = JSONValue(JSONObject("key", JSONValue("value")));
-    // val.type;
-
-    // Breaks
-    // JSONObject obj = JSONObject("key", JSONValue("value"));
-    // JSONValue val2 = JSONValue(obj);
-
-    // value.type;
-    // value.object->print();
-    // REQUIRE(value.object->equals(JSONObject("key", JSONValue("value"))));
-    //  REQUIRE(!(value.object->equals(JSONObject("key", JSONValue("wrong value")))));
-
-    // JSONValue value2 = value.get("key");
-    // REQUIRE(value2 == JSONValue("value"));
-    // REQUIRE(!(value2 == JSONValue("wrong value")));
-
-    // Array<JSONValue> *array = new Array<JSONValue>();
-    // array->push();
 }

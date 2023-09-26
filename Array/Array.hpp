@@ -19,7 +19,7 @@ public:
     void push(T *element);
     T pop();
     T get(int index);
-    bool equals(Array<T> *other);
+    bool operator==(const Array<T> &other) const;
     void print();
 };
 

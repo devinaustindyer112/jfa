@@ -14,8 +14,8 @@ public:
     JSONObject &operator=(const JSONObject &other);
     JSONValue get(JFA::String key);
     ~JSONObject();
-    bool equals(JSONObject *object);
-    bool equals(JSONObject object);
+    bool operator==(JSONObject other);
+    bool operator==(const JSONObject &object) const;
     void print();
 };
 

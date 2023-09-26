@@ -30,9 +30,10 @@ TEST_CASE("constructors")
     array->push(JSONValue("World"));
     JSONValue value5 = JSONValue(array);
     REQUIRE(value5.type == JSONValue::Type::ARRAY);
-    // Figure out why this doesn't work
-    REQUIRE(value5.array->get(0).string == "Hello");
-    REQUIRE(value5.array->get(1).string == "World");
+    JFA::String str1 = value5.array->get(0).string;
+    JFA::String str2 = value5.array->get(1).string;
+    REQUIRE(str1 == "Hello");
+    REQUIRE(str2 == "World");
 }
 
 TEST_CASE("assignment operator")
@@ -51,6 +52,5 @@ TEST_CASE("get")
     JSONValue value2 = value.get("key");
     REQUIRE(value2.string == "value");
 
-    // Continue here. You may want to add tests
-    // for the object constructors and stuff above
+    // Continue here after writing tests for JSONObject
 }

@@ -29,10 +29,9 @@ public:
     JSONValue get(JFA::String key);
     JSONValue get(int index);
     ~JSONValue();
-    void print();
+    bool operator==(JSONValue other);
     bool isNull();
-    char operator==(JSONValue str);
-    bool equals(JSONValue value);
+    void print();
 };
 
 #endif // JSONVALUE_HPP

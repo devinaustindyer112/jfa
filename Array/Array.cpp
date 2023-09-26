@@ -86,7 +86,6 @@ void Array<T>::push(T *element)
         newElements[i] = this->elements[i];
     }
 
-    // This copies the value not the pointer
     newElements[this->size] = *element;
 
     delete[] this->elements;
@@ -120,14 +119,17 @@ T Array<T>::get(int index)
 }
 
 template <typename T>
-bool Array<T>::equals(Array<T> *other)
+bool Array<T>::operator==(const Array<T> &other) const
 {
-    if (this->size != other->size)
+    if (this == &other)
+        return true;
+
+    if (this->size != other.size)
         return false;
 
     for (int i = 0; i < this->size; i++)
     {
-        if (!this->elements[i].equals(other->elements[i]))
+        if (!(this->elements[i] == other.elements[i]))
             return false;
     }
 

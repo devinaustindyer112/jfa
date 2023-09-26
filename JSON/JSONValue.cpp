@@ -152,36 +152,19 @@ bool JSONValue::isNull()
     return this->type == JSONValue::Type::NULL_VALUE;
 }
 
-char JSONValue::operator==(JSONValue str)
+bool JSONValue::operator==(JSONValue other)
 {
-    if (this->type == JSONValue::Type::STRING && str.type == JSONValue::Type::STRING)
+    if (this->type == JSONValue::Type::STRING && other.type == JSONValue::Type::STRING)
     {
-        return this->string == str.string;
+        return this->string == other.string;
     }
-    if (this->type == JSONValue::Type::ARRAY && str.type == JSONValue::Type::ARRAY)
+    if (this->type == JSONValue::Type::ARRAY && other.type == JSONValue::Type::ARRAY)
     {
-        return this->array == str.array;
+        return this->array == other.array;
     }
-    if (this->type == JSONValue::Type::OBJECT && str.type == JSONValue::Type::OBJECT)
+    if (this->type == JSONValue::Type::OBJECT && other.type == JSONValue::Type::OBJECT)
     {
-        return this->object == str.object;
-    }
-    return false;
-}
-
-bool JSONValue::equals(JSONValue value)
-{
-    if (this->type == JSONValue::Type::STRING && value.type == JSONValue::Type::STRING)
-    {
-        return this->string == value.string;
-    }
-    if (this->type == JSONValue::Type::ARRAY && value.type == JSONValue::Type::ARRAY)
-    {
-        return this->array->equals(value.array);
-    }
-    if (this->type == JSONValue::Type::OBJECT && value.type == JSONValue::Type::OBJECT)
-    {
-        return this->object->equals(value.object);
+        return this->object == other.object;
     }
     return false;
 }

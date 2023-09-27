@@ -52,5 +52,10 @@ TEST_CASE("get")
     JSONValue value2 = value.get("key");
     REQUIRE(value2.string == "value");
 
-    // Continue here after writing tests for JSONObject
+    Array<JSONValue> *array = new Array<JSONValue>();
+    array->push(JSONValue("Hello"));
+    array->push(JSONValue("World"));
+    JSONValue value3 = JSONValue(array);
+    JSONValue value4 = value3.get(0);
+    REQUIRE(value4.string == "Hello");
 }

@@ -13,8 +13,8 @@ test-array: JSON/JSONObject.hpp JSON/JSONObject.cpp JSON/JSONValue.cpp JSON/JSON
 	g++ -std=c++14 -o test-array catch_amalgamated.cpp JSON/JSONObject.cpp JSON/JSONValue.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Array/Array.Test.cpp
 	./test-array
 
-test-tokenizer: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
-	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
+test-tokenizer: catch_amalgamated.cpp JSON/JSONObject.hpp JSON/JSONObject.cpp JSON/JSONValue.cpp JSON/JSONValue.hpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
+	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp JSON/JSONObject.cpp JSON/JSONValue.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
 	./test-tokenizer
 
 test-json-value: catch_amalgamated.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp JSON/JSONValue.cpp JSON/JSONObject.cpp JSON/JSONValue.Test.cpp

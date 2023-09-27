@@ -17,6 +17,7 @@ namespace JFA
         String operator+(String str);
         String operator+(char character);
         String &operator=(const String &other);
+        String &operator=(char character);
         char operator[](int index);
         char operator[](int index) const;
         char operator==(const char *str);

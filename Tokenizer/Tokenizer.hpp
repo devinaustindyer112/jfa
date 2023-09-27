@@ -15,18 +15,18 @@ struct JSONToken
         STRING,
     };
     JSONToken::Type type;
-    String value;
+    JFA::String value;
 };
 
 class Tokenizer
 {
 private:
-    String str;
+    JFA::String str;
     int index;
 
 public:
     Tokenizer();
-    Tokenizer(String str);
+    Tokenizer(JFA::String str);
     JSONToken next();
     bool hasNext();
 };

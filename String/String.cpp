@@ -67,6 +67,14 @@ JFA::String::~String()
     delete[] this->str;
 }
 
+JFA::String &JFA::String::operator=(char character)
+{
+    delete[] this->str;
+    this->str = new char[1];
+    this->str[0] = character;
+    return *this;
+}
+
 JFA::String JFA::String::substring(int start, int end)
 {
     int length = end - start;

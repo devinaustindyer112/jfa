@@ -12,8 +12,8 @@ class Parser
 private:
     Tokenizer tokenizer;
     JSONObject root;
-    Array<JSONObject *> *objects;
-    Array<JSONValue *> *values;
+    Array<JSONObject> *objects;
+    Array<JSONValue> *values;
 
     JSONObject *parseObject();
     Array<JSONValue> parseArray();

@@ -7,7 +7,7 @@ Tokenizer::Tokenizer()
     this->index = 0;
 }
 
-Tokenizer::Tokenizer(String str)
+Tokenizer::Tokenizer(JFA::String str)
 {
     this->str = str.replaceAll(" ", "");
     this->index = 0;
@@ -60,7 +60,7 @@ JSONToken Tokenizer::next()
     }
     else if (c == '"')
     {
-        String str = "";
+        JFA::String str = "";
         this->index++;
         while (this->index < this->str.length())
         {

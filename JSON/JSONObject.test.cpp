@@ -44,6 +44,3 @@ TEST_CASE("== operator")
     JSONObject object3 = JSONObject("key", JSONValue("value2"));
     REQUIRE(!(object2 == object3));
 }
-
-// Keep working on the testing JSON and array classes. Need to focus more
-// on handling cases where there or nullpointers and similar cases.

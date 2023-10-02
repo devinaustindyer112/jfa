@@ -1,27 +1,32 @@
 #include "Parser.hpp"
+#include "../JSON/JSONValue.hpp"
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
 #include <iostream>
 
-Parser::Parser(String str)
+Parser::Parser(JFA::String str)
 {
     this->root = JSONObject();
     this->tokenizer = Tokenizer(str);
+    this->parse();
 }
 
 Parser::~Parser()
 {
-    // traverse and call delete on all new'd objects
+    // Need to implement this correctly
+
+    // This broke everything
+    // delete this->objects;
+    // delete this->values;
 }
 
 void Parser::parse()
 {
-    this->root.key = "root";
     JSONToken token = this->tokenizer.next();
-    if (token.type == JSONToken::Type::LBRACE)
+    if (token.type == JSONToken::Type::STRING)
     {
-        this->root.value = JSONValue(this->parseObject());
+        this->root = this->parseObject();
     }
     else
     {
@@ -29,34 +34,19 @@ void Parser::parse()
     }
 };
 
+JSONValue *Parser::parseValue()
+{
+
+    // if next token is string create object
+
+    // Parse object
+    // Parse array
+    // Parse string
+}
+
 JSONObject *Parser::parseObject()
 {
     JSONObject *object = new JSONObject();
-    JSONToken token = this->tokenizer.next();
-    if (token.type == JSONToken::Type::STRING)
-    {
-        object->key = token.value;
-    }
-    else
-    {
-        throw "Invalid JSON";
-    }
-
-    this->eat(JSONToken::Type::COLON);
-    token = this->tokenizer.next();
-
-    if (token.type == JSONToken::Type::STRING)
-    {
-        object->value = JSONValue(token.value);
-    }
-    else if (token.type == JSONToken::Type::LBRACE)
-    {
-        object->value = JSONValue(this->parseObject());
-    }
-    else
-    {
-        throw "Invalid JSON";
-    }
 
     return object;
 }

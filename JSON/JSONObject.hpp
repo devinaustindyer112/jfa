@@ -6,6 +6,8 @@
 class JSONObject
 {
 public:
+    // Implement a map instead of an array here
+    Array<JSONObject> *objects;
     JFA::String key;
     JSONValue *value;
     JSONObject();

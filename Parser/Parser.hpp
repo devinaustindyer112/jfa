@@ -7,24 +7,22 @@
 #include "../JSON/JSONObject.hpp"
 #include <iostream>
 
+// Change to JFA
 class Parser
 {
 private:
     Tokenizer tokenizer;
-    JSONObject root;
-    Array<JSONObject> *objects;
-    Array<JSONValue> *values;
-
     JSONObject *parseObject();
     Array<JSONValue> parseArray();
-
+    void print();
     void eat(JSONToken::Type type);
 
 public:
+    JSONObject *root;
     Parser(JFA::String str);
     ~Parser();
     void parse();
-    void print();
+    JSONValue *parseValue();
 };
 
 #endif // PARSE_HPP

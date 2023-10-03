@@ -2,7 +2,6 @@
 #include "../String/String.hpp"
 #include "../JSON/JSONValue.hpp"
 #include "../JSON/JSONObject.hpp"
-#include <iostream>
 
 template <typename T>
 Array<T>::Array()
@@ -134,19 +133,6 @@ bool Array<T>::operator==(const Array<T> &other) const
     }
 
     return true;
-}
-
-template <typename T>
-void Array<T>::print()
-{
-    std::cout << "[";
-    for (int i = 0; i < this->size; i++)
-    {
-        this->elements[i].print();
-        if (i < this->size - 1)
-            std::cout << ", ";
-    }
-    std::cout << "]";
 }
 
 template class Array<JFA::String>;

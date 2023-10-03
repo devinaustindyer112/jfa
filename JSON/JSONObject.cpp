@@ -1,79 +1,41 @@
 #include "JSONObject.hpp"
-#include <iostream>
+#include "JSONValue.hpp"
+#include "../String/String.hpp"
+#include "../Map/Map.hpp"
 
 JSONObject::JSONObject()
 {
-    this->key = "";
-    this->value = nullptr;
+    this->entries = Map<JFA::String, JSONValue>();
 }
 
 // Copy constructor (Deep copy)
 JSONObject::JSONObject(const JSONObject &other)
 {
-    this->key = other.key;
-    if (other.value == nullptr)
-    {
-        this->value = nullptr;
-    }
-    else
-    {
-        this->value = new JSONValue(*other.value);
-    }
+    this->entries = other.entries;
 }
 
 // Deep copy assignment operator
 JSONObject &JSONObject::operator=(const JSONObject &other)
 {
-    if (other.value == nullptr)
+    if (this != &other)
     {
-        this->value = nullptr;
-    }
-    else if (this != &other)
-    {
-        this->key = other.key;
-        delete this->value;
-        this->value = new JSONValue(*other.value);
+        this->entries = other.entries;
     }
     return *this;
 }
 
-// Destructor
-JSONObject::~JSONObject()
-{
-    delete this->value;
-}
-
 JSONObject::JSONObject(JFA::String key, JSONValue value)
 {
-    this->key = key;
-    this->value = new JSONValue(value);
+    this->entries = Map<JFA::String, JSONValue>();
+    this->entries.put(key, value);
 }
 
 JSONValue JSONObject::get(JFA::String key)
 {
-    if (this->key == key)
-    {
-        return *this->value;
-    }
-    else
-    {
-        return this->value->get(key);
-    }
+    return this->entries.get(key);
 }
 
-bool JSONObject::operator==(JSONObject object)
+bool JSONObject::operator==(const JSONObject &other) const
 {
-    if (this->value == nullptr && object.value == nullptr)
-    {
-        return true;
-    }
-    return this->key == object.key && *this->value == *object.value;
-}
-
-void JSONObject::print()
-{
-    this->key.print();
-    std::cout << ": ";
-    value->print();
-    std::cout << std::endl;
+    return this->entries == other.entries;
 }

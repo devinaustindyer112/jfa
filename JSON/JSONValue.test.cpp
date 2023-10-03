@@ -22,8 +22,6 @@ TEST_CASE("constructors")
 
     JSONValue value4 = JSONValue(JSONObject("key", JSONValue("value")));
     REQUIRE(value4.type == JSONValue::Type::OBJECT);
-    REQUIRE(value4.object->key == "key");
-    REQUIRE(value4.object->value->string == "value");
 
     Array<JSONValue> *array = new Array<JSONValue>();
     array->push(JSONValue("Hello"));

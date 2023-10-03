@@ -1,3 +1,5 @@
+#ifndef MAP_HPP
+#define MAP_HPP
 #include "../String/String.hpp"
 
 template <typename K, typename V>
@@ -24,6 +26,7 @@ public:
     bool contains(K key);
     int getSize();
     bool operator==(const Map &map) const;
-    void print();
     ~Map();
 };
+
+#endif // MAP_HPP

@@ -7,16 +7,7 @@
 TEST_CASE("constructors")
 {
     JSONObject object = JSONObject();
-    REQUIRE(object.key == "");
-    REQUIRE(object.value == nullptr);
-
-    JSONObject object2 = JSONObject("key", JSONValue("value"));
-    REQUIRE(object2.key == "key");
-    REQUIRE(object2.value->string == "value");
-
-    JSONObject object3 = object2;
-    REQUIRE(object3.key == "key");
-    REQUIRE(object3.value->string == "value");
+    REQUIRE(object.entries.getSize() == 0);
 }
 
 TEST_CASE("assignment operator")
@@ -24,8 +15,7 @@ TEST_CASE("assignment operator")
     JSONObject object = JSONObject("key", JSONValue("value"));
     JSONObject object2 = JSONObject("key2", JSONValue("value2"));
     object = object2;
-    REQUIRE(object.key == "key2");
-    REQUIRE(object.value->string == "value2");
+    REQUIRE(object.entries.getSize() == 1);
 }
 
 TEST_CASE("get")

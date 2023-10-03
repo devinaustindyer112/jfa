@@ -1,6 +1,7 @@
 #include "JSONValue.hpp"
 #include "JSONObject.hpp"
-#include <iostream>
+#include "../String/String.hpp"
+#include "../Array/Array.hpp"
 
 JSONValue::JSONValue()
 {
@@ -128,22 +129,6 @@ JSONValue JSONValue::get(int index)
     else
     {
         return JSONValue();
-    }
-}
-
-void JSONValue::print()
-{
-    if (this->type == JSONValue::Type::OBJECT)
-    {
-        this->object->print();
-    }
-    else if (this->type == JSONValue::Type::STRING)
-    {
-        this->string.print();
-    }
-    else if (this->type == JSONValue::Type::ARRAY)
-    {
-        this->array->print();
     }
 }
 

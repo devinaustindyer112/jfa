@@ -1,4 +1,6 @@
 #include "./Map.hpp"
+#include "../JSON/JSONValue.hpp"
+#include <iostream>
 
 template <typename K, typename V>
 Map<K, V>::Map()
@@ -112,7 +114,7 @@ int Map<K, V>::getSize()
 }
 
 template <typename K, typename V>
-bool Map<K, V>::operator==(const Map &map) const
+bool Map<K, V>::operator==(const Map &other) const
 {
     if (this->size != other.size)
     {
@@ -121,7 +123,7 @@ bool Map<K, V>::operator==(const Map &map) const
 
     for (int i = 0; i < this->size; i++)
     {
-        if (this->entries[i].key != other.entries[i].key || this->entries[i].value != other.entries[i].value)
+        if (!(this->entries[i].key == other.entries[i].key) || !(this->entries[i].value == other.entries[i].value))
         {
             return false;
         }
@@ -131,25 +133,11 @@ bool Map<K, V>::operator==(const Map &map) const
 }
 
 template <typename K, typename V>
-void Map<K, V>::print()
-{
-    std::cout << "{";
-
-    for (int i = 0; i < this->size; i++)
-    {
-        std::cout << this->entries[i].key << ": " << this->entries[i].value;
-
-        if (i < this->size - 1)
-        {
-            std::cout << ", ";
-        }
-    }
-
-    std::cout << "}" << std::endl;
-}
-
-template <typename K, typename V>
 Map<K, V>::~Map()
 {
     delete[] this->entries;
 }
+
+template class Map<int, int>;
+template class Map<JFA::String, JFA::String>;
+template class Map<JFA::String, JSONValue>;

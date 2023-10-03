@@ -7,7 +7,7 @@
 
 Parser::Parser(JFA::String str)
 {
-    this->root = JSONObject();
+    this->root = new JSONObject();
     this->tokenizer = Tokenizer(str);
     this->parse();
 }
@@ -21,24 +21,14 @@ Parser::~Parser()
     // delete this->values;
 }
 
-void Parser::parse()
-{
-    JSONToken token = this->tokenizer.next();
-    if (token.type == JSONToken::Type::STRING)
-    {
-        this->root = this->parseObject();
-    }
-    else
-    {
-        throw "Invalid JSON";
-    }
+void Parser::parse(){
+    // eat {
+    // this->root = this->parseObject();
+    // eat }
 };
 
 JSONValue *Parser::parseValue()
 {
-
-    // if next token is string create object
-
     // Parse object
     // Parse array
     // Parse string
@@ -46,6 +36,7 @@ JSONValue *Parser::parseValue()
 
 JSONObject *Parser::parseObject()
 {
+    // while next token is string
     JSONObject *object = new JSONObject();
 
     return object;

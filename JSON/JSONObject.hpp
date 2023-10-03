@@ -13,7 +13,6 @@ public:
     JSONObject(JFA::String key, JSONValue value);
     JSONObject &operator=(const JSONObject &other);
     JSONValue get(JFA::String key);
-    Map<JFA::String, JSONValue> getEntries();
     bool operator==(const JSONObject &object) const;
 };
 

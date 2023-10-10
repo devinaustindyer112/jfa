@@ -5,13 +5,12 @@
 #include "../Array/Array.hpp"
 #include "../JSON/JSONValue.hpp"
 #include "../JSON/JSONObject.hpp"
-#include <iostream>
 
 // Change to JFA
 class Parser
 {
 private:
-    Tokenizer tokenizer;
+    Tokenizer *tokenizer;
     void eat(JSONToken::Type type);
 
 public:

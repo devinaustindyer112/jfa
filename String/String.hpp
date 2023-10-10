@@ -26,7 +26,6 @@ namespace JFA
         int length() const;
         int indexOf(const char *search);
         bool equals(String str);
-        void print();
     };
 }
 

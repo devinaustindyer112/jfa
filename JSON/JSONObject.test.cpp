@@ -2,7 +2,6 @@
 #include "./JSONValue.hpp"
 #include "../Array/Array.hpp"
 #include "../catch_amalgamated.hpp"
-#include <iostream>
 
 TEST_CASE("constructors")
 {

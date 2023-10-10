@@ -9,6 +9,7 @@ Tokenizer::Tokenizer()
 
 Tokenizer::Tokenizer(JFA::String str)
 {
+    // This is breaking everything
     this->str = str.replaceAll(" ", "");
     this->index = 0;
 }

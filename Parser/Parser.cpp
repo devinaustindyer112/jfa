@@ -3,21 +3,21 @@
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
-#include <iostream>
 
 Parser::Parser(JFA::String str)
 {
-    this->tokenizer = Tokenizer(str);
+    this->tokenizer = new Tokenizer(str);
 }
 
 Parser::~Parser()
 {
+    delete this->tokenizer;
 }
 
 JSONValue Parser::parseValue()
 {
 
-    JSONToken token = this->tokenizer.next();
+    JSONToken token = this->tokenizer->next();
     if (token.type == JSONToken::Type::STRING)
     {
         return JSONValue(token.value);
@@ -35,9 +35,9 @@ JSONObject Parser::parseObject()
     JSONObject object = JSONObject();
 
     // while next token is string
-    while (this->tokenizer.hasNext())
+    while (this->tokenizer->hasNext())
     {
-        JSONToken token = this->tokenizer.next();
+        JSONToken token = this->tokenizer->next();
         if (token.type == JSONToken::Type::STRING)
         {
             JFA::String key = token.value;
@@ -63,7 +63,7 @@ JSONObject Parser::parseObject()
 
 void Parser::eat(JSONToken::Type type)
 {
-    JSONToken token = this->tokenizer.next();
+    JSONToken token = this->tokenizer->next();
     if (token.type != type)
     {
         throw "Invalid JSON";

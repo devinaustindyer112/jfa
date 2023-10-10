@@ -4,17 +4,8 @@
 
 TEST_CASE("parse - simple object")
 {
-    Parser parser = Parser("{ \"effect\":\"waves\" }");
-
-    if (parser.root.get("effect") == JFA::String("wave"))
-        std::cout << "Success!\n";
-    else
-        std::cout << "Failure!\n";
-}
-
-TEST_CASE("parse - object with array ")
-{
-    Parser parser = Parser("{ \"effect\":\"wave\", \"color\":\"blue\" }");
-
-    // parser.root.get("color").print();
+    Parser parser = Parser("{ \"effect\": \"waves\", \"speed\": \"0.5\", \"color\": \"blue\" }");
+    JSONObject object = parser.parseObject();
+    REQUIRE(!(object.get("effect") == JSONValue("wavess")));
+    REQUIRE((object.get("effect") == JSONValue("waves")));
 }

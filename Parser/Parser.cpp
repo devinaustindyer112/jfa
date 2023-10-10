@@ -7,9 +7,7 @@
 
 Parser::Parser(JFA::String str)
 {
-    this->root = new JSONObject();
     this->tokenizer = Tokenizer(str);
-    this->parse();
 }
 
 Parser::~Parser()
@@ -21,31 +19,59 @@ Parser::~Parser()
     // delete this->values;
 }
 
-void Parser::parse(){
-    // eat {
-    // this->root = this->parseObject();
-    // eat }
-};
-
-JSONValue *Parser::parseValue()
+JSONValue Parser::parseValue()
 {
-    // Parse object
-    // Parse array
-    // Parse string
+
+    JSONToken token = this->tokenizer.next();
+    if (token.type == JSONToken::Type::STRING)
+    {
+        return JSONValue(token.value);
+    }
+    else
+    {
+        throw "Invalid JSON - parseValue";
+    }
+    JSONValue value = JSONValue();
 }
 
-JSONObject *Parser::parseObject()
+JSONObject Parser::parseObject()
 {
-    // while next token is string
-    JSONObject *object = new JSONObject();
+    this->eat(JSONToken::Type::LBRACE);
+    std::cout << "eat {" << std::endl;
+    JSONObject object = JSONObject();
 
+    // while next token is string
+    while (this->tokenizer.hasNext())
+    {
+        std::cout << "has next" << std::endl;
+
+        JSONToken token = this->tokenizer.next();
+        if (token.type == JSONToken::Type::STRING)
+        {
+            JFA::String key = token.value;
+            this->eat(JSONToken::Type::COLON);
+            std::cout << "eat :" << std::endl;
+            JSONValue value = this->parseValue();
+            object.entries.put(key, value);
+            std::cout << "token is string" << std::endl;
+        }
+        else if (token.type == JSONToken::Type::COMMA)
+        {
+            std::cout << "token is comma" << std::endl;
+            continue;
+        }
+        else if (token.type == JSONToken::Type::RBRACE)
+        {
+            std::cout << "token is }" << std::endl;
+            break;
+        }
+        else
+        {
+            throw "Invalid JSON - parseObject";
+        }
+    }
     return object;
 }
-
-Array<JSONValue> Parser::parseArray()
-{
-    return Array<JSONValue>();
-};
 
 void Parser::eat(JSONToken::Type type)
 {
@@ -54,9 +80,4 @@ void Parser::eat(JSONToken::Type type)
     {
         throw "Invalid JSON";
     }
-}
-
-void Parser::print()
-{
-    this->root.print();
 }

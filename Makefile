@@ -29,8 +29,8 @@ test-tokenizer: catch_amalgamated.cpp JSON/JSONObject.hpp JSON/JSONObject.cpp JS
 	g++ -std=c++14 -o test-tokenizer catch_amalgamated.cpp JSON/JSONObject.cpp JSON/JSONValue.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Tokenizer/Tokenizer.Test.cpp
 	./test-tokenizer
 
-test-parser: catch_amalgamated.cpp JSON/JSONObject.hpp JSON/JSONObject.cpp JSON/JSONValue.cpp JSON/JSONValue.hpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Parser/Parser.cpp Parser/Parser.Test.cpp
-	g++ -std=c++14 -o test-parser catch_amalgamated.cpp JSON/JSONObject.cpp JSON/JSONValue.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Parser/Parser.cpp Parser/Parser.Test.cpp
+test-parser: catch_amalgamated.cpp Map/Map.cpp JSON/JSONObject.hpp JSON/JSONObject.cpp JSON/JSONValue.cpp JSON/JSONValue.hpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Parser/Parser.cpp Parser/Parser.Test.cpp
+	g++ -std=c++14 -o test-parser catch_amalgamated.cpp Map/Map.cpp JSON/JSONObject.cpp JSON/JSONValue.cpp Utilities/Utilities.cpp String/String.cpp Array/Array.cpp Tokenizer/Tokenizer.cpp Parser/Parser.cpp Parser/Parser.Test.cpp
 	./test-parser
 
 clean: 

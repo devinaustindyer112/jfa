@@ -12,17 +12,15 @@ class Parser
 {
 private:
     Tokenizer tokenizer;
-    JSONObject *parseObject();
-    Array<JSONValue> parseArray();
-    void print();
     void eat(JSONToken::Type type);
 
 public:
-    JSONObject *root;
+    JSONObject root;
     Parser(JFA::String str);
     ~Parser();
     void parse();
-    JSONValue *parseValue();
+    JSONValue parseValue();
+    JSONObject parseObject();
 };
 
 #endif // PARSE_HPP

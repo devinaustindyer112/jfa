@@ -228,7 +228,7 @@ JFA::String JFA::String::replace(const char *search, const char *replace)
     {
         str[i] = this->str[i];
     }
-    for (int i = 0; i < lenReplace; i++) // Correct the loop indices
+    for (int i = 0; i < lenReplace; i++)
     {
         str[index + i] = replace[i];
     }

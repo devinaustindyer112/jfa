@@ -3,6 +3,7 @@
 
 TEST_CASE("size", "[size]")
 {
+    REQUIRE(size("\"\"\"\"") == 4);
     REQUIRE(size("test") == 4);
     REQUIRE(size("") == 0);
 }

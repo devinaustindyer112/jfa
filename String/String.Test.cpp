@@ -1,6 +1,7 @@
 #include "String.hpp"
 #include "../Utilities/Utilities.hpp"
 #include "../catch_amalgamated.hpp"
+#include <iostream>
 
 TEST_CASE("constructors", "[constructors]")
 {
@@ -102,20 +103,15 @@ TEST_CASE("replace", "[replace]")
     JFA::String str = JFA::String("These are a bunch of words.");
     JFA::String replaced = str.replace("bunch", "lot");
 
-    REQUIRE(strCompare(replaced.toCharArray(), "These are a lot of words.") == 1);
+    std::cout << replaced.str << std::endl;
+
+    REQUIRE(replaced == "These are a lot of words.");
 }
 
 TEST_CASE("replaceAll", "[replaceAll]")
 {
-    JFA::String str = JFA::String("These are a bunch of words.");
+
+    JFA::String str = JFA::String("{ \"effect\": \"waves\", \"speed\": \"0.5\", \"color\": \"blue }\"");
     JFA::String replaced = str.replaceAll(" ", "");
-
-    REQUIRE(strCompare(replaced.toCharArray(), "Theseareabunchofwords.") == 1);
-    REQUIRE(replaced.length() == 22);
-}
-
-TEST_CASE("print", "[print]")
-{
-    JFA::String str = JFA::String("This should print for the world to see.");
-    str.print();
+    REQUIRE(replaced == "{\"effect\":\"waves\",\"speed\":\"0.5\",\"color\":\"blue}\"");
 }

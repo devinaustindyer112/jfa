@@ -1,6 +1,5 @@
 #include "../Utilities/Utilities.hpp"
 #include "String.hpp"
-#include <iostream>
 
 JFA::String::String()
 {
@@ -9,14 +8,12 @@ JFA::String::String()
 
 JFA::String::String(const char *str)
 {
-    std::cout << "constructor 1" << std::endl;
-    char *newStr = new char[size(str)];
-    std::cout << "constructor 2" << std::endl;
+    char *newStr = new char[size(str) + 1];
     for (int i = 0; i < size(str); i++)
     {
         newStr[i] = str[i];
     }
-    std::cout << "constructor 3" << std::endl;
+    newStr[size(str)] = '\0';
     this->str = newStr;
 }
 
@@ -25,11 +22,12 @@ JFA::String::String(const String &other)
 {
     if (other.str != nullptr)
     {
-        this->str = new char[other.length()];
+        this->str = new char[other.length() + 1];
         for (int i = 0; i < other.length(); i++)
         {
             this->str[i] = other[i];
         }
+        this->str[other.length()] = '\0';
     }
     else
     {
@@ -40,7 +38,6 @@ JFA::String::String(const String &other)
 // Deep copy assignment operator
 JFA::String &JFA::String::operator=(const String &other)
 {
-    std::cout << "assignment operator" << std::endl;
     if (this == &other)
     {
         return *this; // Self-assignment, nothing to do
@@ -51,11 +48,12 @@ JFA::String &JFA::String::operator=(const String &other)
 
     if (other.str != nullptr)
     {
-        this->str = new char[other.length()];
+        this->str = new char[other.length() + 1];
         for (int i = 0; i < other.length(); i++)
         {
             this->str[i] = other[i];
         }
+        this->str[other.length()] = '\0';
     }
     else
     {
@@ -77,8 +75,9 @@ JFA::String::~String()
 JFA::String &JFA::String::operator=(char character)
 {
     delete[] this->str;
-    this->str = new char[1];
+    this->str = new char[2];
     this->str[0] = character;
+    this->str[1] = '\0';
     return *this;
 }
 
@@ -86,11 +85,12 @@ JFA::String JFA::String::substring(int start, int end)
 {
     int length = end - start;
 
-    char sub[length];
+    char sub[length + 1];
     for (int i = start; i < end; i++)
     {
         sub[i] = this->str[i + start];
     }
+    sub[length] = '\0';
 
     return JFA::String(sub);
 }
@@ -110,7 +110,7 @@ JFA::String JFA::String::operator+(JFA::String string)
     int len1 = size(this->str);
     int len2 = string.length();
 
-    char *str = new char[len1 + len2];
+    char *str = new char[len1 + len2 + 1];
 
     for (int i = 0; i < len1; i++)
     {
@@ -121,20 +121,24 @@ JFA::String JFA::String::operator+(JFA::String string)
         str[i + len1] = string[i];
     }
 
+    str[len1 + len2] = '\0';
+
     return JFA::String(str);
 }
 
 JFA::String JFA::String::operator+(char character)
 {
-    int len1 = size(this->str);
-    char *str = new char[len1 + 1];
+    int len = size(this->str);
+    char *str = new char[len + 2];
 
-    for (int i = 0; i < len1; i++)
+    for (int i = 0; i < len; i++)
     {
         str[i] = this->str[i];
     }
 
-    str[len1] = character;
+    str[len] = character;
+    str[len + 1] = '\0';
+
     return JFA::String(str);
 }
 
@@ -210,30 +214,30 @@ int JFA::String::indexOf(const char *search)
     }
     return -1;
 }
-
 JFA::String JFA::String::replace(const char *search, const char *replace)
 {
     int index = this->indexOf(search);
     int len = this->length();
     int lenSearch = size(search);
     int lenReplace = size(replace);
+    int newLength = len + lenReplace - lenSearch;
 
-    char *str = new char[len + lenReplace - lenSearch];
+    char *str = new char[newLength + 1];
 
     for (int i = 0; i < index; i++)
     {
         str[i] = this->str[i];
     }
-    for (int i = 0; i < lenReplace; i++)
+    for (int i = 0; i < lenReplace; i++) // Correct the loop indices
     {
-        str[i + index] = replace[i];
+        str[index + i] = replace[i];
     }
     for (int i = index + lenSearch; i < len; i++)
     {
         str[i + lenReplace - lenSearch] = this->str[i];
     }
 
-    std::cout << "done replace - replace" << std::endl;
+    str[newLength] = '\0';
 
     return JFA::String(str);
 }
@@ -243,12 +247,7 @@ JFA::String JFA::String::replaceAll(const char *search, const char *replace)
     JFA::String str = JFA::String(this->str);
     while (str.indexOf(search) != -1)
     {
-        std::cout << "replace: " << search << std::endl;
-        std::cout << "with: " << replace << std::endl;
         str = str.replace(search, replace);
-        std::cout << "done replace - replace all" << std::endl;
     }
-    std::cout << "done replace all" << std::endl;
-
     return str;
 }

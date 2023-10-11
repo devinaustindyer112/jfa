@@ -1,7 +1,6 @@
 #include "String.hpp"
 #include "../Utilities/Utilities.hpp"
 #include "../catch_amalgamated.hpp"
-#include <iostream>
 
 TEST_CASE("constructors", "[constructors]")
 {
@@ -102,8 +101,6 @@ TEST_CASE("replace", "[replace]")
 {
     JFA::String str = JFA::String("These are a bunch of words.");
     JFA::String replaced = str.replace("bunch", "lot");
-
-    std::cout << replaced.str << std::endl;
 
     REQUIRE(replaced == "These are a lot of words.");
 }

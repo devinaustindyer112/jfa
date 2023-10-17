@@ -8,62 +8,30 @@ JFA::String::String()
 
 JFA::String::String(const char *str)
 {
-    char *newStr = new char[size(str) + 1];
+    this->str = new char[size(str) + 1];
     for (int i = 0; i < size(str); i++)
     {
-        newStr[i] = str[i];
+        this->str[i] = str[i];
     }
-    newStr[size(str)] = '\0';
-    this->str = newStr;
+    this->str[size(str)] = '\0';
 }
 
-// Copy constructor (Deep copy)
 JFA::String::String(const String &other)
 {
-    if (other.str != nullptr)
-    {
-        this->str = new char[other.length() + 1];
-        for (int i = 0; i < other.length(); i++)
-        {
-            this->str[i] = other[i];
-        }
-        this->str[other.length()] = '\0';
-    }
-    else
+    if (other.str == nullptr)
     {
         this->str = nullptr;
+        return;
     }
+
+    this->str = new char[other.length() + 1];
+    for (int i = 0; i < other.length(); i++)
+    {
+        this->str[i] = other[i];
+    }
+    this->str[other.length()] = '\0';
 }
 
-// Deep copy assignment operator
-JFA::String &JFA::String::operator=(const String &other)
-{
-    if (this == &other)
-    {
-        return *this; // Self-assignment, nothing to do
-    }
-
-    // Deallocate existing memory
-    delete[] this->str;
-
-    if (other.str != nullptr)
-    {
-        this->str = new char[other.length() + 1];
-        for (int i = 0; i < other.length(); i++)
-        {
-            this->str[i] = other[i];
-        }
-        this->str[other.length()] = '\0';
-    }
-    else
-    {
-        this->str = nullptr;
-    }
-
-    return *this;
-}
-
-// Destructor
 JFA::String::~String()
 {
     if (this->str != nullptr)
@@ -72,42 +40,44 @@ JFA::String::~String()
     }
 }
 
+JFA::String &JFA::String::operator=(const String &other)
+{
+    if (this == &other)
+    {
+        return *this;
+    }
+
+    delete[] this->str;
+
+    if (other.str == nullptr)
+    {
+        this->str = nullptr;
+        return *this;
+    }
+
+    this->str = new char[other.length() + 1];
+    for (int i = 0; i < other.length(); i++)
+    {
+        this->str[i] = other[i];
+    }
+    this->str[other.length()] = '\0';
+    return *this;
+}
+
 JFA::String &JFA::String::operator=(char character)
 {
-    delete[] this->str;
+    if (this->str != nullptr)
+        delete[] this->str;
+
     this->str = new char[2];
     this->str[0] = character;
     this->str[1] = '\0';
     return *this;
 }
 
-JFA::String JFA::String::substring(int start, int end)
-{
-    int length = end - start;
-
-    char sub[length + 1];
-    for (int i = start; i < end; i++)
-    {
-        sub[i] = this->str[i + start];
-    }
-    sub[length] = '\0';
-
-    return JFA::String(sub);
-}
-
-int JFA::String::length()
-{
-    return size(this->str);
-}
-
-int JFA::String::length() const
-{
-    return size(this->str);
-}
-
 JFA::String JFA::String::operator+(JFA::String string)
 {
-    int len1 = size(this->str);
+    int len1 = this->length();
     int len2 = string.length();
 
     char *str = new char[len1 + len2 + 1];
@@ -128,7 +98,7 @@ JFA::String JFA::String::operator+(JFA::String string)
 
 JFA::String JFA::String::operator+(char character)
 {
-    int len = size(this->str);
+    int len = this->length();
     char *str = new char[len + 2];
 
     for (int i = 0; i < len; i++)
@@ -142,10 +112,10 @@ JFA::String JFA::String::operator+(char character)
     return JFA::String(str);
 }
 
-// char JFA::String::operator[](int index) const
-// {
-//     return this->str[index];
-// }
+char JFA::String::operator[](int index) const
+{
+    return this->str[index];
+}
 
 char JFA::String::operator[](int index)
 {
@@ -197,23 +167,20 @@ bool JFA::String::equals(JFA::String str)
     return true;
 }
 
-int JFA::String::indexOf(const char *search)
+JFA::String JFA::String::substring(int start, int end)
 {
-    for (int i = 0; i < this->length(); i++)
+    int length = end - start;
+
+    char sub[length + 1];
+    for (int i = start; i < end; i++)
     {
-        int index = 0;
-        while (this->str[i] == search[index])
-        {
-            if (index == size(search) - 1)
-            {
-                return i - index;
-            }
-            index++;
-            i++;
-        }
+        sub[i] = this->str[i + start];
     }
-    return -1;
+    sub[length] = '\0';
+
+    return JFA::String(sub);
 }
+
 JFA::String JFA::String::replace(const char *search, const char *replace)
 {
     int index = this->indexOf(search);
@@ -250,4 +217,32 @@ JFA::String JFA::String::replaceAll(const char *search, const char *replace)
         str = str.replace(search, replace);
     }
     return str;
+}
+
+int JFA::String::length()
+{
+    return size(this->str);
+}
+
+int JFA::String::length() const
+{
+    return size(this->str);
+}
+
+int JFA::String::indexOf(const char *search)
+{
+    for (int i = 0; i < this->length(); i++)
+    {
+        int index = 0;
+        while (this->str[i] == search[index])
+        {
+            if (index == size(search) - 1)
+            {
+                return i - index;
+            }
+            index++;
+            i++;
+        }
+    }
+    return -1;
 }

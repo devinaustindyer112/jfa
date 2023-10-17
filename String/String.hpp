@@ -19,6 +19,7 @@ namespace JFA
         String &operator=(const String &other);
         String &operator=(char character);
         char operator[](int index);
+        // Required for copy constructor
         char operator[](int index) const;
         char operator==(const char *str);
         char operator==(String str);

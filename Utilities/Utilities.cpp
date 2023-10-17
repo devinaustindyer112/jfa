@@ -9,16 +9,21 @@ int size(const char *str)
     return count;
 }
 
-int strCompare(const char *str1, const char *str2)
+bool strCompare(const char *str1, const char *str2)
 {
+    if (size(str1) != size(str2))
+    {
+        return false;
+    }
+
     while (*str1 != '\0' && *str2 != '\0')
     {
         if (*str1 != *str2)
         {
-            return 0;
+            return false;
         }
         str1++;
         str2++;
     }
-    return 1;
+    return true;
 }

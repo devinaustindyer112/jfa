@@ -1,15 +1,16 @@
 #include "Utilities.hpp"
 #include "../catch_amalgamated.hpp"
 
-TEST_CASE("size", "[size]")
+TEST_CASE("size")
 {
     REQUIRE(size("\"\"\"\"") == 4);
     REQUIRE(size("test") == 4);
     REQUIRE(size("") == 0);
 }
 
-TEST_CASE("equals", "[equals]")
+TEST_CASE("equals")
 {
-    REQUIRE(strCompare("test", "test") == 1);
-    REQUIRE(strCompare("test", "false") == 0);
+    REQUIRE(strCompare("test", "test"));
+    REQUIRE(!strCompare("test", "false"));
+    REQUIRE(!strCompare("te", "test"));
 }

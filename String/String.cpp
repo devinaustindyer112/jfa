@@ -142,10 +142,10 @@ JFA::String JFA::String::operator+(char character)
     return JFA::String(str);
 }
 
-char JFA::String::operator[](int index) const
-{
-    return this->str[index];
-}
+// char JFA::String::operator[](int index) const
+// {
+//     return this->str[index];
+// }
 
 char JFA::String::operator[](int index)
 {

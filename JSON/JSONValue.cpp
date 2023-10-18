@@ -2,28 +2,29 @@
 #include "JSONObject.hpp"
 #include "../String/String.hpp"
 #include "../Array/Array.hpp"
+#include <iostream>
 
 JSONValue::JSONValue()
 {
     this->type = Type::NULL_VALUE;
     this->string = "";
     this->object = nullptr;
-    this->array = nullptr;
+    this->array = Array<JSONValue>();
 }
 
 // Copy constructor (Deep copy)
 JSONValue::JSONValue(const JSONValue &other)
 {
     this->type = other.type;
-    this->string = other.string; // Assuming String has a proper copy constructor
+    this->string = other.string;
 
     if (other.type == Type::OBJECT)
     {
-        this->object = new JSONObject(*other.object); // Deep copy JSONObject
+        this->object = new JSONObject(*other.object);
     }
     else if (other.type == Type::ARRAY)
     {
-        this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
+        this->array = other.array;
     }
     else if (other.type == Type::NULL_VALUE)
     {
@@ -34,51 +35,44 @@ JSONValue::JSONValue(const JSONValue &other)
 // Deep copy assignment operator
 JSONValue &JSONValue::operator=(const JSONValue &other)
 {
+    if (this->object != nullptr)
+    {
+        delete this->object;
+    }
+
     if (this != &other)
     {
         this->type = other.type;
         this->string = other.string;
-
-        // Delete the existing memory (if applicable)
-        if (this->type == Type::OBJECT)
-        {
-            delete this->object;
-        }
-        else if (this->type == Type::ARRAY)
-        {
-            delete this->array;
-        }
-
-        // Perform a deep copy of data members
-        if (other.type == Type::OBJECT)
-        {
-            this->object = new JSONObject(*other.object);
-        }
-        else if (other.type == Type::ARRAY)
-        {
-            this->array = new Array<JSONValue>(*other.array); // Deep copy Array<JSONValue>
-        }
+        this->array = other.array;
     }
+
+    if (other.object != nullptr)
+    {
+        this->object = new JSONObject(*other.object);
+    }
+    else
+    {
+        this->object = nullptr;
+    }
+
     return *this;
 }
 
 // Destructor
 JSONValue::~JSONValue()
 {
-    if (this->type == Type::OBJECT)
-    {
-        delete this->object;
-    }
-    else if (this->type == Type::ARRAY)
-    {
-        delete this->array;
-    }
+    // if (this->object != nullptr)
+    // {
+    //     delete this->object;
+    // }
 }
 
 JSONValue::JSONValue(JFA::String string)
 {
     this->type = Type::STRING;
     this->string = string;
+    this->object = nullptr;
 }
 
 JSONValue::JSONValue(JSONObject object)
@@ -87,10 +81,11 @@ JSONValue::JSONValue(JSONObject object)
     this->object = new JSONObject(object);
 }
 
-JSONValue::JSONValue(Array<JSONValue> *array)
+JSONValue::JSONValue(Array<JSONValue> array)
 {
     this->type = Type::ARRAY;
-    this->array = new Array<JSONValue>(array);
+    this->array = array;
+    this->object = nullptr;
 }
 
 JSONValue JSONValue::get(JFA::String key)
@@ -105,9 +100,9 @@ JSONValue JSONValue::get(JFA::String key)
         int index = 0;
         do
         {
-            value = this->array->get(index).get(key);
+            value = this->array.get(index).get(key);
             index++;
-        } while (!value.isNull() && index < this->array->length());
+        } while (!value.isNull() && index < this->array.length());
         return value;
     }
     else if (this->type == JSONValue::Type::STRING)
@@ -124,7 +119,7 @@ JSONValue JSONValue::get(int index)
 {
     if (this->type == JSONValue::Type::ARRAY)
     {
-        return this->array->get(index);
+        return this->array.get(index);
     }
     else
     {

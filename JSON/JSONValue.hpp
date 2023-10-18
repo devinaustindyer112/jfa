@@ -18,13 +18,14 @@ public:
 
     Type type;
     JFA::String string;
+    // Forward declaration of JSONObject
     JSONObject *object;
-    Array<JSONValue> *array;
+    Array<JSONValue> array;
     JSONValue();
     JSONValue(const JSONValue &other);
     JSONValue(JFA::String value);
     JSONValue(JSONObject value);
-    JSONValue(Array<JSONValue> *value);
+    JSONValue(Array<JSONValue> value);
     JSONValue &operator=(const JSONValue &other);
     JSONValue get(JFA::String key);
     JSONValue get(int index);

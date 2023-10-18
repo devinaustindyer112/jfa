@@ -10,8 +10,6 @@ private:
 
 public:
     Array();
-    Array(Array *other);
-    Array(Array &&other);
     Array(const Array<T> &other);
     ~Array();
     int length();

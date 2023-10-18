@@ -58,6 +58,7 @@ TEST_CASE("operator+ with char")
 TEST_CASE("operator[]")
 {
     JFA::String str = JFA::String("test");
+
     REQUIRE(str[0] == 't');
     REQUIRE(str[1] == 'e');
     REQUIRE(str[2] == 's');

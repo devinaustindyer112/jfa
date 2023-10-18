@@ -2,36 +2,13 @@
 #include "../String/String.hpp"
 #include "../JSON/JSONValue.hpp"
 #include "../JSON/JSONObject.hpp"
+#include <iostream>
 
 template <typename T>
 Array<T>::Array()
 {
     this->elements = new T[0];
     this->size = 0;
-}
-
-template <typename T>
-Array<T>::Array(Array<T> *other)
-{
-    this->elements = new T[other->size];
-    this->size = other->size;
-
-    for (int i = 0; i < this->size; i++)
-    {
-        this->elements[i] = other->elements[i];
-    }
-}
-
-template <typename T>
-Array<T>::Array(Array<T> &&other)
-{
-    this->elements = new T[other.size];
-    this->size = other.size;
-
-    for (int i = 0; i < this->size; i++)
-    {
-        this->elements[i] = other.elements[i];
-    }
 }
 
 template <typename T>
@@ -49,7 +26,8 @@ Array<T>::Array(const Array<T> &other)
 template <typename T>
 Array<T>::~Array()
 {
-    delete[] this->elements;
+    // if (this->size > 0)
+    //     delete[] this->elements;
 }
 
 template <typename T>
@@ -61,18 +39,20 @@ int Array<T>::length()
 template <typename T>
 void Array<T>::push(T element)
 {
-    T *newElements = new T[this->size + 1];
+    this->size++;
 
-    for (int i = 0; i < this->size; i++)
+    T *newElements = new T[this->size];
+
+    for (int i = 0; i < this->size - 1; i++)
     {
         newElements[i] = this->elements[i];
     }
 
-    newElements[this->size] = element;
+    newElements[this->size - 1] = element;
 
+    // Delete the old array and update the elements pointer
     delete[] this->elements;
     this->elements = newElements;
-    this->size++;
 }
 
 template <typename T>
@@ -135,6 +115,7 @@ bool Array<T>::operator==(const Array<T> &other) const
     return true;
 }
 
+template class Array<int>;
 template class Array<JFA::String>;
 template class Array<JSONValue>;
 template class Array<JSONObject>;

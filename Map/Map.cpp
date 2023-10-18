@@ -1,5 +1,6 @@
 #include "./Map.hpp"
 #include "../JSON/JSONValue.hpp"
+#include <iostream>
 
 template <typename K, typename V>
 Map<K, V>::Map()
@@ -45,8 +46,6 @@ V Map<K, V>::get(K key)
             return this->entries[i].value;
         }
     }
-
-    throw "Error in Map::get: Key not found";
 }
 
 template <typename K, typename V>
@@ -102,8 +101,6 @@ void Map<K, V>::remove(K key)
             return;
         }
     }
-
-    throw "Error in Map::remove: Key not found";
 }
 
 template <typename K, typename V>

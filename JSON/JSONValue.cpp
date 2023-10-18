@@ -62,10 +62,10 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
 // Destructor
 JSONValue::~JSONValue()
 {
-    // if (this->object != nullptr)
-    // {
-    //     delete this->object;
-    // }
+    if (this->object != nullptr)
+    {
+        delete this->object;
+    }
 }
 
 JSONValue::JSONValue(JFA::String string)

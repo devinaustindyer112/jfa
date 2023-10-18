@@ -14,11 +14,9 @@ public:
     ~Array();
     int length();
     void push(T element);
-    void push(T *element);
     T pop();
     T get(int index);
     bool operator==(const Array<T> &other) const;
-    void print();
 };
 
 #endif // ARRAY_HPP

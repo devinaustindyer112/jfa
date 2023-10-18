@@ -2,7 +2,6 @@
 #include "../String/String.hpp"
 #include "../JSON/JSONValue.hpp"
 #include "../JSON/JSONObject.hpp"
-#include <iostream>
 
 template <typename T>
 Array<T>::Array()
@@ -26,8 +25,8 @@ Array<T>::Array(const Array<T> &other)
 template <typename T>
 Array<T>::~Array()
 {
-    // if (this->size > 0)
-    //     delete[] this->elements;
+    if (this->size > 0)
+        delete[] this->elements;
 }
 
 template <typename T>
@@ -53,23 +52,6 @@ void Array<T>::push(T element)
     // Delete the old array and update the elements pointer
     delete[] this->elements;
     this->elements = newElements;
-}
-
-template <typename T>
-void Array<T>::push(T *element)
-{
-    T *newElements = new T[this->size + 1];
-
-    for (int i = 0; i < this->size; i++)
-    {
-        newElements[i] = this->elements[i];
-    }
-
-    newElements[this->size] = *element;
-
-    delete[] this->elements;
-    this->elements = newElements;
-    this->size++;
 }
 
 template <typename T>

@@ -46,6 +46,8 @@ V Map<K, V>::get(K key)
             return this->entries[i].value;
         }
     }
+
+    return V();
 }
 
 template <typename K, typename V>

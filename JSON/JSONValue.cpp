@@ -2,7 +2,6 @@
 #include "JSONObject.hpp"
 #include "../String/String.hpp"
 #include "../Array/Array.hpp"
-#include <iostream>
 
 JSONValue::JSONValue()
 {
@@ -18,9 +17,20 @@ JSONValue::JSONValue(const JSONValue &other)
     this->type = other.type;
     this->string = other.string;
 
-    if (other.type == Type::OBJECT)
+    if (other.type != Type::OBJECT)
     {
-        this->object = new JSONObject(*other.object);
+        this->object = nullptr;
+    }
+    else if (other.type == Type::OBJECT)
+    {
+        if (other.object != nullptr)
+        {
+            this->object = new JSONObject(*other.object);
+        }
+        else
+        {
+            this->object = nullptr;
+        }
     }
     else if (other.type == Type::ARRAY)
     {
@@ -35,16 +45,18 @@ JSONValue::JSONValue(const JSONValue &other)
 // Deep copy assignment operator
 JSONValue &JSONValue::operator=(const JSONValue &other)
 {
+    if (this == &other)
+    {
+        return *this;
+    }
+
+    this->type = other.type;
+    this->string = other.string;
+    this->array = other.array;
+
     if (this->object != nullptr)
     {
         delete this->object;
-    }
-
-    if (this != &other)
-    {
-        this->type = other.type;
-        this->string = other.string;
-        this->array = other.array;
     }
 
     if (other.object != nullptr)
@@ -62,6 +74,10 @@ JSONValue &JSONValue::operator=(const JSONValue &other)
 // Destructor
 JSONValue::~JSONValue()
 {
+    // I believe the issue is that not all constructors, assignment operator
+    // and copy constructor are handling the object correctly. It should
+    // be set to nullptr where appropriate.
+
     if (this->object != nullptr)
     {
         delete this->object;
@@ -72,6 +88,7 @@ JSONValue::JSONValue(JFA::String string)
 {
     this->type = Type::STRING;
     this->string = string;
+    this->array = Array<JSONValue>();
     this->object = nullptr;
 }
 
@@ -79,13 +96,16 @@ JSONValue::JSONValue(JSONObject object)
 {
     this->type = Type::OBJECT;
     this->object = new JSONObject(object);
+    this->string = "";
+    this->array = Array<JSONValue>();
 }
 
 JSONValue::JSONValue(Array<JSONValue> array)
 {
     this->type = Type::ARRAY;
-    this->array = array;
     this->object = nullptr;
+    this->string = "";
+    this->array = array;
 }
 
 JSONValue JSONValue::get(JFA::String key)
@@ -146,5 +166,6 @@ bool JSONValue::operator==(JSONValue other)
     {
         return this->object == other.object;
     }
+
     return false;
 }

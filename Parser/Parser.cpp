@@ -3,6 +3,7 @@
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
+#include <iostream>
 
 Parser::Parser(JFA::String str)
 {
@@ -38,6 +39,7 @@ JSONObject Parser::parseObject()
     while (this->tokenizer->hasNext())
     {
         JSONToken token = this->tokenizer->next();
+
         if (token.type == JSONToken::Type::STRING)
         {
             JFA::String key = token.value;
@@ -58,6 +60,7 @@ JSONObject Parser::parseObject()
             throw "Invalid JSON";
         }
     }
+
     return object;
 }
 

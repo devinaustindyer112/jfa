@@ -1,6 +1,5 @@
 #include "./Map.hpp"
 #include "../JSON/JSONValue.hpp"
-#include <iostream>
 
 template <typename K, typename V>
 Map<K, V>::Map()
@@ -73,6 +72,7 @@ void Map<K, V>::put(K key, V value)
     newEntries[this->size].value = value;
 
     delete[] this->entries;
+
     this->entries = newEntries;
     this->size++;
 }

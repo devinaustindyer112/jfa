@@ -1,7 +1,7 @@
-#include "JSONObject.hpp"
-#include "JSONValue.hpp"
-#include "../String/String.hpp"
-#include "../Map/Map.hpp"
+#include "./json_object.hpp"
+#include "./json_value.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../map/map.hpp"
 
 JSONObject::JSONObject()
 {

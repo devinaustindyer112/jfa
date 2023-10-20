@@ -1,5 +1,5 @@
-#include "Tokenizer.hpp"
-#include "../catch_amalgamated.hpp"
+#include "tokenizer.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("constructor")
 {

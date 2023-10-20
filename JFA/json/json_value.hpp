@@ -1,7 +1,7 @@
 #ifndef JSONVALUE_HPP
 #define JSONVALUE_HPP
-#include "../String/String.hpp"
-#include "../Array/Array.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../array/array.hpp"
 
 class JSONObject;
 

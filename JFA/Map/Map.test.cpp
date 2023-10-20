@@ -1,8 +1,8 @@
-#include "./Map.hpp"
-#include "../JSON/JSONObject.hpp"
-#include "../JSON/JSONValue.hpp"
-#include "../String/String.hpp"
-#include "../catch_amalgamated.hpp"
+#include "./map.hpp"
+#include "../json/json_object.hpp"
+#include "../json/json_value.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("constructor", "[map]")
 {

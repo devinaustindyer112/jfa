@@ -1,8 +1,8 @@
-#include "Parser.hpp"
-#include "../JSON/JSONValue.hpp"
-#include "../String/String.hpp"
-#include "../Tokenizer/Tokenizer.hpp"
-#include "../Array/Array.hpp"
+#include "parser.hpp"
+#include "../json/json_value.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../tokenizer/tokenizer.hpp"
+#include "../array/array.hpp"
 
 Parser::Parser(JFA::String str)
 {

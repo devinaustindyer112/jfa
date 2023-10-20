@@ -1,5 +1,5 @@
-#include "Utilities.hpp"
-#include "../catch_amalgamated.hpp"
+#include "utils.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("size")
 {

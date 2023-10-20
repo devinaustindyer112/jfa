@@ -1,5 +1,5 @@
-#include "Tokenizer.hpp"
-#include "../String/String.hpp"
+#include "tokenizer.hpp"
+#include "../jfa_string/jfa_string.hpp"
 
 Tokenizer::Tokenizer()
 {

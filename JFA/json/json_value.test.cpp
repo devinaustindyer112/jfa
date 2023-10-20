@@ -1,7 +1,7 @@
-#include "./JSONObject.hpp"
-#include "./JSONValue.hpp"
-#include "../Array/Array.hpp"
-#include "../catch_amalgamated.hpp"
+#include "./json_object.hpp"
+#include "./json_value.hpp"
+#include "../array/array.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("constructors")
 {

@@ -1,10 +1,9 @@
 #ifndef PARSE_HPP
 #define PARSE_HPP
-#include "../String/String.hpp"
-#include "../Tokenizer/Tokenizer.hpp"
-#include "../Array/Array.hpp"
-#include "../JSON/JSONValue.hpp"
-#include "../JSON/JSONObject.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../tokenizer/tokenizer.hpp"
+#include "../json/json_value.hpp"
+#include "../json/json_object.hpp"
 
 // Change to JFA
 class Parser

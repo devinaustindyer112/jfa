@@ -1,6 +1,6 @@
 #ifndef MAP_HPP
 #define MAP_HPP
-#include "../String/String.hpp"
+#include "../jfa_string/jfa_string.hpp"
 
 template <typename K, typename V>
 struct Entry

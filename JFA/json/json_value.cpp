@@ -1,7 +1,7 @@
-#include "JSONValue.hpp"
-#include "JSONObject.hpp"
-#include "../String/String.hpp"
-#include "../Array/Array.hpp"
+#include "./json_value.hpp"
+#include "./json_object.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../array/array.hpp"
 
 JSONValue::JSONValue()
 {

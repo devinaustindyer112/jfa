@@ -1,5 +1,5 @@
-#include "../Utilities/Utilities.hpp"
-#include "String.hpp"
+#include "../utils/utils.hpp"
+#include "jfa_string.hpp"
 
 JFA::String::String()
 {

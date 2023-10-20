@@ -1,6 +1,6 @@
-#include "String.hpp"
-#include "../Utilities/Utilities.hpp"
-#include "../catch_amalgamated.hpp"
+#include "jfa_string.hpp"
+#include "../utils/utils.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("constructors")
 {

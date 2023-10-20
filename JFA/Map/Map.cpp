@@ -1,5 +1,5 @@
-#include "./Map.hpp"
-#include "../JSON/JSONValue.hpp"
+#include "./map.hpp"
+#include "../json/json_value.hpp"
 
 template <typename K, typename V>
 Map<K, V>::Map()

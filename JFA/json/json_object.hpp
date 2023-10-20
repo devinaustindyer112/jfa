@@ -1,8 +1,8 @@
 #ifndef JSONOBJECT_HPP
 #define JSONOBJECT_HPP
-#include "JSONValue.hpp"
-#include "../String/String.hpp"
-#include "../Map/Map.hpp"
+#include "./json_value.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../map/map.hpp"
 
 class JSONObject
 {

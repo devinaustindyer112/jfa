@@ -1,7 +1,7 @@
-#include "./Parser.hpp"
-#include "../String/String.hpp"
-#include "../Utilities/Utilities.hpp"
-#include "../catch_amalgamated.hpp"
+#include "./parser.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../utils/utils.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("parse - simple object")
 {

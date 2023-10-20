@@ -1,6 +1,6 @@
 #ifndef TOKENIZER_HPP
 #define TOKENIZER_HPP
-#include "../String/String.hpp"
+#include "../jfa_string/jfa_string.hpp"
 
 struct JSONToken
 {

@@ -1,8 +1,8 @@
-#include "Array.hpp"
-#include "../String/String.hpp"
-#include "../JSON/JSONValue.hpp"
-#include "../JSON/JSONObject.hpp"
-#include "../catch_amalgamated.hpp"
+#include "array.hpp"
+#include "../jfa_string/jfa_string.hpp"
+#include "../json/json_value.hpp"
+#include "../json/json_object.hpp"
+#include "../../catch_amalgamated.hpp"
 
 TEST_CASE("constructors", "[array]")
 {

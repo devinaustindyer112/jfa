@@ -3,7 +3,6 @@
 #include "../JSON/JSONValue.hpp"
 #include "../JSON/JSONObject.hpp"
 #include "../catch_amalgamated.hpp"
-#include <iostream>
 
 TEST_CASE("constructors", "[array]")
 {

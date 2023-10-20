@@ -3,7 +3,6 @@
 #include "../String/String.hpp"
 #include "../Tokenizer/Tokenizer.hpp"
 #include "../Array/Array.hpp"
-#include <iostream>
 
 Parser::Parser(JFA::String str)
 {

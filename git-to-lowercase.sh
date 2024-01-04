@@ -5,18 +5,18 @@
 # lowercase
 
 to_lowercase() {
-    basename $1 
+    echo $1 | tr '[:lower:]' '[:upper:]'
 }
 
 export -f to_lowercase
 
-find . \
-  -not -path "./git-to-lowercase*" \
-  -not -path "." \
-  -not -path "./.git*" \
-  -not -path "./.vscode*" \
-  -not -path "./Makefile" \
-  -not -path "./README.md" \
-  -not -path "./catch_*" \
-  -exec bash -c 'to_lowercase "$0"' {} \;
+# TODO: Incorporate the following command instead of find
+# echo 'hi' | git ls-files | grep -E '\.hpp$|\.cpp$|/$'
+
+
+git ls-files | xargs -n 1 dirname | uniq | while read -r directory; do echo "$directory"; done
+
+
+git ls-files -o -d | grep '/$'
+
 

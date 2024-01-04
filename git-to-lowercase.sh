@@ -10,11 +10,13 @@ to_lowercase() {
 
 export -f to_lowercase
 
-# TODO: Incorporate the following command instead of find
-# echo 'hi' | git ls-files | grep -E '\.hpp$|\.cpp$|/$'
+# TODO: Research the reasoning for having to take a two step process
+# https://stackoverflow.com/questions/3011625/git-mv-and-only-change-case-of-directory
 
-
-git ls-files | xargs -n 1 dirname | uniq | while read -r directory; do echo "$directory"; done
+# handle renaming directories first. this will be a 2 step process
+git ls-tree -r -d --name-only HEAD | uniq | while read -r directory; do echo "$directory"; done
+# handle renaming files after directories
+git ls-files
 
 
 git ls-files -o -d | grep '/$'

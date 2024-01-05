@@ -12,6 +12,8 @@ export -f to_lowercase
 # TODO: Research why OS being case insensitive causes discrepencies
 # https://stackoverflow.com/questions/3011625/git-mv-and-only-change-case-of-directory
 
+# QUESTION: How do people normally style bash?
+
 
 # handle renaming files fist
 git ls-files | uniq | grep -v 'Makefile\|README.md'| while read -r file; do echo "$file"; done

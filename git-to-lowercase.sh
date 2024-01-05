@@ -14,7 +14,7 @@ export -f to_lowercase
 
 
 # handle renaming files fist
-git ls-files | uniq | grep -v 'Makefile\|README.md\|'| while read -r file; do echo "$file"; done
+git ls-files | uniq | grep -v 'Makefile\|README.md'| while read -r file; do echo "$file"; done
 
 # handle renaming directories first. this will be a 2 step process
 git ls-tree -r -d --name-only HEAD | uniq | while read -r directory; do echo "$directory"; done

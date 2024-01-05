@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # TODO: Delete this file
-# Only needed for forcing directories and files to 
-# lowercase
+# Only needed for forcing directories and files to lowercase
 
 to_lowercase() {
     echo $1 | tr '[:lower:]' '[:upper:]'
@@ -10,15 +9,15 @@ to_lowercase() {
 
 export -f to_lowercase
 
-# TODO: Research the reasoning for having to take a two step process
+# TODO: Research why OS being case insensitive causes discrepencies
 # https://stackoverflow.com/questions/3011625/git-mv-and-only-change-case-of-directory
+
+
+# handle renaming files fist
+git ls-files | uniq | grep -v 'Makefile\|README.md\|'| while read -r file; do echo "$file"; done
 
 # handle renaming directories first. this will be a 2 step process
 git ls-tree -r -d --name-only HEAD | uniq | while read -r directory; do echo "$directory"; done
-# handle renaming files after directories
-git ls-files
 
-
-git ls-files -o -d | grep '/$'
 
 

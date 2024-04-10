@@ -1,5 +1,5 @@
 {
-    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.defaultFormatter": null,
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
@@ -84,5 +84,7 @@
         "stack": "cpp",
         "future": "cpp",
         "numeric": "cpp"
-    }
+    },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }

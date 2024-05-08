@@ -22,6 +22,8 @@ class Tokenizer
 {
 private:
     JFA::String str;
+    JSONToken currentToken;
+    JSONToken previousToken;
     int index;
 
 public:
@@ -29,6 +31,7 @@ public:
     Tokenizer(JFA::String str);
     JSONToken next();
     bool hasNext();
+    JSONToken previous();
 };
 
 #endif // TOKENIZER_HPP

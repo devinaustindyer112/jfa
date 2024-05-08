@@ -93,6 +93,7 @@ JSONToken Tokenizer::next()
         token.type = JSONToken::Type::STRING;
         token.value = str;
     }
+
     this->currentToken = token;
     return token;
 }

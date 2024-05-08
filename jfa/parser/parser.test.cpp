@@ -14,4 +14,9 @@ TEST_CASE("parse - simple object")
     JSONValue speed = obj.entries.get("speed");
     REQUIRE(speed.string == "0.5");
     REQUIRE(!(speed.string == "0.6"));
+
+    Parser parserError = Parser("{ \"effect\": \"waves\",}");
+    JSONObject objError = parserError.parseObject();
+    JSONValue effectError = objError.entries.get("effect");
+    REQUIRE(effectError.string == "wavess");
 }

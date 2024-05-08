@@ -17,6 +17,7 @@ TEST_CASE("previous")
 {
     Tokenizer tokenizer = Tokenizer("{ \"effect\": \"waves\", \"speed\": \"0.5\", \"color\": \"blue\" }");
     tokenizer.next();
+    tokenizer.next();
     JSONToken previous = tokenizer.previous();
-    REQUIRE(previous.value == "");
+    REQUIRE(previous.value == "{");
 }
